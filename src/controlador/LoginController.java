@@ -4,16 +4,18 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
+import org.mindrot.jbcrypt.BCrypt;
 import vista.Login;
 
 public class LoginController implements MouseListener{
     
-    private Login vistaLogin;
+    private final Login vistaLogin;
 
     public LoginController(Login vistaLogin) {
         this.vistaLogin = vistaLogin;
         this.vistaLogin.jlblCerrar.addMouseListener(this);
         this.vistaLogin.jlblMinimizar.addMouseListener(this);
+        this.vistaLogin.jbtnIngresar.addMouseListener(this);
     }
  
     public void iniciar(){
@@ -29,8 +31,24 @@ public class LoginController implements MouseListener{
         if(e.getSource() == this.vistaLogin.jlblMinimizar){
             this.vistaLogin.setState(JFrame.ICONIFIED);
         }
+        if(e.getSource() == this.vistaLogin.jbtnIngresar){
+            
+            String user = this.vistaLogin.jtxtUsername.getText();
+            String pass = String.valueOf(this.vistaLogin.jpswPassword.getPassword());
+            
+            System.out.println("pass = " + hashearContrasenia(pass));    
+            
+        }
     }
 
+    public String hashearContrasenia(String password){
+        
+        int saltos = 12;
+        
+        return BCrypt.hashpw(password, BCrypt.gensalt(saltos));
+        
+    }
+    
     @Override
     public void mousePressed(MouseEvent e) {
         if(e.getSource() == this.vistaLogin.jlblCerrar){
@@ -64,5 +82,5 @@ public class LoginController implements MouseListener{
             this.vistaLogin.jlblMinimizar.setBackground(Color.WHITE);
         }
     }
-    
+
 }

@@ -1,6 +1,6 @@
 package main;
 
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatGitHubDarkIJTheme;
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import controlador.LoginController;
 import vista.Login;
 
@@ -8,7 +8,7 @@ public class main {
 
     public static void main(String[] args) {
         
-        FlatGitHubDarkIJTheme.setup();
+        FlatMaterialLighterIJTheme.setup();
         
         Login mv = new Login();
         
