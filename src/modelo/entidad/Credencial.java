@@ -3,11 +3,12 @@ package modelo.entidad;
 import lombok.Getter;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
+import org.mindrot.jbcrypt.BCrypt;
 
 @AllArgsConstructor
 @Getter
 @Setter
-public class Credencial {
+public final class Credencial {
     
     private int idCredencial;
     private int idEmpleado;
@@ -17,6 +18,14 @@ public class Credencial {
     public Credencial(String username, String password){
         this.username = username;
         this.password = password;
+    }
+    
+    public String hashearContrasenia(String password){
+        
+        int saltos = 12;
+        
+        return BCrypt.hashpw(password, BCrypt.gensalt(saltos));
+        
     }
     
 }

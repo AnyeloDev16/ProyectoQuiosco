@@ -10,9 +10,7 @@ public class ServiceAdministrador {
     private final Conexion conexion = Conexion.getConexion();
 
     private ServiceAdministrador() {
-    }
-
-    ;
+    };
     
     public static ServiceAdministrador getInstance() {
         if (instance == null) {

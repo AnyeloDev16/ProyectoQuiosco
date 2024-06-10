@@ -1,10 +1,15 @@
 package controlador;
 
+import Service.OperationResult;
+import Service.ServiceLogin;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
-import org.mindrot.jbcrypt.BCrypt;
+import javax.swing.JOptionPane;
+import modelo.entidad.*;
+import vista.AdministradorVista;
+import vista.CajeroVista;
 import vista.Login;
 
 public class LoginController implements MouseListener{
@@ -36,17 +41,15 @@ public class LoginController implements MouseListener{
             String user = this.vistaLogin.jtxtUsername.getText();
             String pass = String.valueOf(this.vistaLogin.jpswPassword.getPassword());
             
-            System.out.println("pass = " + hashearContrasenia(pass));    
+            Credencial crd = new Credencial(user, pass);   
+            
+            ServiceLogin servicio = ServiceLogin.getInstance();
+            
+            OperationResult or = servicio.accederSistema(crd);
+            
+            accionIngresar(or);
             
         }
-    }
-
-    public String hashearContrasenia(String password){
-        
-        int saltos = 12;
-        
-        return BCrypt.hashpw(password, BCrypt.gensalt(saltos));
-        
     }
     
     @Override
@@ -81,6 +84,41 @@ public class LoginController implements MouseListener{
         if(e.getSource() == this.vistaLogin.jlblMinimizar){
             this.vistaLogin.jlblMinimizar.setBackground(Color.WHITE);
         }
+    }
+
+    private void accionIngresar(OperationResult or) {
+    
+        switch(or.getEstadoOperation()){
+                case -1 -> JOptionPane.showMessageDialog(null,or.getMensaje());
+                case 0 -> JOptionPane.showMessageDialog(null,or.getMensaje());
+                case 1 -> {
+                
+                    Empleado emp = (Empleado)or.getObjeto().get("Empleado");
+                    Rol rol = (Rol)or.getObjeto().get("Rol");
+                
+                    if(rol.getIdRol() == 1){
+                        
+                        AdministradorVista vistaAdm = new AdministradorVista();
+                        
+                        AdministradorController ctrlAdm = new AdministradorController(vistaAdm, emp);
+                        
+                        ctrlAdm.iniciar();
+                        this.vistaLogin.dispose();
+                        
+                    } else if(rol.getIdRol() == 2){
+                        
+                        CajeroVista vistaAdm = new CajeroVista();
+                        
+                        CajeroController ctrlCaj = new CajeroController();
+                        
+//                        ctrlCaj.iniciar();
+                        this.vistaLogin.dispose();
+                        
+                    }
+                    
+                }
+            }
+        
     }
 
 }
