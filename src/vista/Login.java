@@ -19,8 +19,8 @@ public class Login extends javax.swing.JFrame {
         jlblTextIngresa.setFont(fuente.fuente(fuente.ROBOTO, 1, 18));
         jlblTextUsuario.setFont(fuente.fuente(fuente.ROBOTO, 0, 14));
         jlbltextContrasenia.setFont(fuente.fuente(fuente.ROBOTO, 0, 14));
-        jtxtUsername.setFont(fuente.fuente(fuente.ROBOTO, 0, 12));
-        jpswPassword.setFont(fuente.fuente(fuente.ROBOTO, 0, 12));
+        jtxtUsername.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jpswPassword.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
         jbtnIngresar.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
         jlblTextOlvido.setFont(fuente.fuente(fuente.ROBOTO, 0, 14));
     }
@@ -82,22 +82,24 @@ public class Login extends javax.swing.JFrame {
         jpnlPrincipal.add(jlblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, 40));
 
         jtxtUsername.setBackground(new java.awt.Color(255, 255, 255));
+        jtxtUsername.setForeground(new java.awt.Color(102, 102, 102));
         jtxtUsername.setBorder(null);
-        jpnlPrincipal.add(jtxtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 270, 30));
+        jpnlPrincipal.add(jtxtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 270, 30));
 
         jpswPassword.setBackground(new java.awt.Color(255, 255, 255));
+        jpswPassword.setForeground(new java.awt.Color(102, 102, 102));
         jpswPassword.setBorder(null);
         jpnlPrincipal.add(jpswPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 270, 30));
 
-        jbtnIngresar.setBackground(new java.awt.Color(51, 153, 255));
+        jbtnIngresar.setBackground(new java.awt.Color(0, 123, 255));
         jbtnIngresar.setForeground(new java.awt.Color(255, 255, 255));
         jbtnIngresar.setText("INGRESAR");
-        jpnlPrincipal.add(jbtnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 190, 40));
+        jpnlPrincipal.add(jbtnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 380, 190, 40));
 
         jlblTextUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jlblTextUsuario.setForeground(new java.awt.Color(102, 102, 102));
         jlblTextUsuario.setText("Usuario:");
-        jpnlPrincipal.add(jlblTextUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, -1, -1));
+        jpnlPrincipal.add(jlblTextUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
         jlbltextContrasenia.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jlbltextContrasenia.setForeground(new java.awt.Color(102, 102, 102));
@@ -106,7 +108,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/user.png"))); // NOI18N
-        jpnlPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 40, 30));
+        jpnlPrincipal.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 40, 30));
 
         jSeparator1.setForeground(new java.awt.Color(102, 102, 102));
         jpnlPrincipal.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 320, 20));
@@ -116,15 +118,15 @@ public class Login extends javax.swing.JFrame {
         jpnlPrincipal.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 40, 30));
 
         jSeparator2.setForeground(new java.awt.Color(102, 102, 102));
-        jpnlPrincipal.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 230, 320, 20));
+        jpnlPrincipal.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 320, 20));
 
         jlblTextIngresa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jlblTextIngresa.setText("Ingresa a tu cuenta");
         jpnlPrincipal.add(jlblTextIngresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
 
-        jlblTextOlvido.setForeground(new java.awt.Color(102, 102, 102));
+        jlblTextOlvido.setForeground(new java.awt.Color(51, 51, 51));
         jlblTextOlvido.setText("¿Olvidaste tu contraseña?");
-        jpnlPrincipal.add(jlblTextOlvido, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, -1, -1));
+        jpnlPrincipal.add(jlblTextOlvido, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 430, -1, -1));
 
         jpblVentanaCompleta.add(jpnlPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 450, 500));
 

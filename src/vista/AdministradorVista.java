@@ -25,6 +25,18 @@ public class AdministradorVista extends javax.swing.JFrame {
         jbtnEmpleados.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
         jbtnProducto.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
         jbtnCerrarSesion.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
+        //Empleado
+        jlblTituloEmpleado.setFont(fuente.fuente(fuente.ROBOTO, 1, 30));
+        jlblInfEmpleado.setFont(fuente.fuente(fuente.ROBOTO, 1, 24));
+        jlblEstadoE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
+        jlblNombreCE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
+        jlblRolE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
+        jlblDniE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
+        jlblTelefonoE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
+        jlblUsernameE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
+        jlblPassE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
+        jbtnCambiarEstado.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
+        jbtnRegitrarNuevoEmpleado.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
     }
 
     @SuppressWarnings("unchecked")
@@ -62,15 +74,28 @@ public class AdministradorVista extends javax.swing.JFrame {
         jSeparator8 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblEmpleados = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        jlblInfEmpleado = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jlblDniE = new javax.swing.JLabel();
+        jlblEstadoE = new javax.swing.JLabel();
+        jlblNombreCE = new javax.swing.JLabel();
+        jlblRolE = new javax.swing.JLabel();
+        jlblTelefonoE = new javax.swing.JLabel();
+        jlblTelefonoI = new javax.swing.JLabel();
+        jlblNombreCI = new javax.swing.JLabel();
+        jlblRolI = new javax.swing.JLabel();
+        jlblDniI = new javax.swing.JLabel();
+        jlblEstadoI = new javax.swing.JLabel();
+        jlblPassE = new javax.swing.JLabel();
+        jlblUsernameE = new javax.swing.JLabel();
+        jlblUsernameI = new javax.swing.JLabel();
+        jlblPassI = new javax.swing.JLabel();
+        jbtnCambiarEstado = new javax.swing.JButton();
+        jlblTituloEmpleado = new javax.swing.JLabel();
+        jbtnRegitrarNuevoEmpleado = new javax.swing.JButton();
         jpnlProducto = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1200, 700));
         setMinimumSize(new java.awt.Dimension(1200, 700));
         setUndecorated(true);
         setResizable(false);
@@ -241,41 +266,79 @@ public class AdministradorVista extends javax.swing.JFrame {
         jtblEmpleados.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtblEmpleados);
 
-        jpnlEmpleado.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, 530));
+        jpnlEmpleado.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, 530));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Información completa del empleado:");
-        jpnlEmpleado.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 340, 30));
+        jlblInfEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jlblInfEmpleado.setForeground(new java.awt.Color(29, 53, 87));
+        jlblInfEmpleado.setText("Información completa del empleado:");
+        jpnlEmpleado.add(jlblInfEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 440, 30));
 
-        jPanel1.setBackground(new java.awt.Color(220, 220, 220));
+        jPanel1.setBackground(new java.awt.Color(211, 211, 211));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
-        );
+        jlblDniE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlblDniE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblDniE.setText("DNI:");
+        jPanel1.add(jlblDniE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
-        jpnlEmpleado.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 450, 260));
+        jlblEstadoE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlblEstadoE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblEstadoE.setText("Estado:");
+        jPanel1.add(jlblEstadoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setText("ADMINISTRACIÓN DE EMPLEADOS:");
-        jpnlEmpleado.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 420, 40));
+        jlblNombreCE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlblNombreCE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblNombreCE.setText("Nombre completo:");
+        jPanel1.add(jlblNombreCE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(51, 153, 255));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cambiar estado de Empleado");
-        jpnlEmpleado.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 420, 190, 50));
+        jlblRolE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlblRolE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblRolE.setText("Rol:");
+        jPanel1.add(jlblRolE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(51, 153, 255));
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Registrar nuevo Empleado");
-        jpnlEmpleado.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 420, 190, 50));
+        jlblTelefonoE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlblTelefonoE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblTelefonoE.setText("Teléfono:");
+        jPanel1.add(jlblTelefonoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        jPanel1.add(jlblTelefonoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 130, 20));
+        jPanel1.add(jlblNombreCI, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 270, 20));
+        jPanel1.add(jlblRolI, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 130, 20));
+        jPanel1.add(jlblDniI, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 130, 20));
+
+        jlblEstadoI.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jlblEstadoI.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jlblEstadoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 140, 30));
+
+        jlblPassE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlblPassE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblPassE.setText("Password:");
+        jPanel1.add(jlblPassE, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
+
+        jlblUsernameE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlblUsernameE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblUsernameE.setText("Username:");
+        jPanel1.add(jlblUsernameE, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
+        jPanel1.add(jlblUsernameI, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 140, 20));
+        jPanel1.add(jlblPassI, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 140, 20));
+
+        jbtnCambiarEstado.setBackground(new java.awt.Color(76, 175, 80));
+        jbtnCambiarEstado.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnCambiarEstado.setText("Cambiar estado");
+        jPanel1.add(jbtnCambiarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 130, 30));
+
+        jpnlEmpleado.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 480, 250));
+
+        jlblTituloEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jlblTituloEmpleado.setForeground(new java.awt.Color(29, 53, 87));
+        jlblTituloEmpleado.setText("ADMINISTRACIÓN DE EMPLEADOS:");
+        jpnlEmpleado.add(jlblTituloEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 630, 40));
+
+        jbtnRegitrarNuevoEmpleado.setBackground(new java.awt.Color(51, 153, 255));
+        jbtnRegitrarNuevoEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnRegitrarNuevoEmpleado.setText("Registrar nuevo Empleado");
+        jpnlEmpleado.add(jbtnRegitrarNuevoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 420, 190, 50));
 
         jtpnlVentanas.addTab("Empleado", jpnlEmpleado);
 
@@ -312,10 +375,6 @@ public class AdministradorVista extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -330,16 +389,34 @@ public class AdministradorVista extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    public javax.swing.JButton jbtnCambiarEstado;
     public javax.swing.JButton jbtnCerrarSesion;
     public javax.swing.JButton jbtnEmpleados;
     public javax.swing.JButton jbtnInicio;
     public javax.swing.JButton jbtnProducto;
+    public javax.swing.JButton jbtnRegitrarNuevoEmpleado;
     public javax.swing.JButton jbtnVentas;
     public javax.swing.JLabel jlblCerrar;
+    private javax.swing.JLabel jlblDniE;
+    public javax.swing.JLabel jlblDniI;
     public javax.swing.JLabel jlblEmpleadoNombre;
+    private javax.swing.JLabel jlblEstadoE;
+    public javax.swing.JLabel jlblEstadoI;
+    private javax.swing.JLabel jlblInfEmpleado;
     public javax.swing.JLabel jlblLogoTienda;
     public javax.swing.JLabel jlblMinimizar;
+    private javax.swing.JLabel jlblNombreCE;
+    public javax.swing.JLabel jlblNombreCI;
+    private javax.swing.JLabel jlblPassE;
+    public javax.swing.JLabel jlblPassI;
+    private javax.swing.JLabel jlblRolE;
+    public javax.swing.JLabel jlblRolI;
+    private javax.swing.JLabel jlblTelefonoE;
+    public javax.swing.JLabel jlblTelefonoI;
     private javax.swing.JLabel jlblTitulo;
+    private javax.swing.JLabel jlblTituloEmpleado;
+    private javax.swing.JLabel jlblUsernameE;
+    public javax.swing.JLabel jlblUsernameI;
     private javax.swing.JPanel jpnlBarraOpciones;
     private javax.swing.JPanel jpnlBarraTitulo;
     private javax.swing.JPanel jpnlEmpleado;
@@ -347,7 +424,7 @@ public class AdministradorVista extends javax.swing.JFrame {
     private javax.swing.JPanel jpnlPrincipal;
     private javax.swing.JPanel jpnlProducto;
     private javax.swing.JPanel jpnlVentas;
-    private javax.swing.JTable jtblEmpleados;
+    public javax.swing.JTable jtblEmpleados;
     public javax.swing.JTabbedPane jtpnlVentanas;
     // End of variables declaration//GEN-END:variables
 }

@@ -37,7 +37,9 @@ public class AdministradorController implements MouseListener{
         }
         
         if(e.getSource() == this.vistaAdm.jbtnEmpleados){
-                       
+            
+            this.vistaAdm.jbtnEmpleados.setBackground(new Color(29, 53, 87));
+            this.vistaAdm.jbtnEmpleados.setForeground(new Color(255,255,255));     
             AdmEmpleadoController empCtrl = new AdmEmpleadoController(vistaAdm, modelo);          
             this.vistaAdm.jtpnlVentanas.setSelectedIndex(2);
                      
@@ -66,7 +68,7 @@ public class AdministradorController implements MouseListener{
         if(e.getSource() == this.vistaAdm.jlblMinimizar){
             this.vistaAdm.jlblMinimizar.setBackground(new Color(41, 87, 164));
         }
-    
+
     }
 
     @Override

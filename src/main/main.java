@@ -1,6 +1,7 @@
 package main;
 
-import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
+import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
+
 import controlador.LoginController;
 import vista.Login;
 
@@ -8,7 +9,7 @@ public class main {
 
     public static void main(String[] args) {
         
-        FlatMaterialLighterIJTheme.setup();
+        FlatArcDarkIJTheme.setup();
         
         Login mv = new Login();
         
