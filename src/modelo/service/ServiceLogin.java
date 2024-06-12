@@ -1,19 +1,25 @@
 package modelo.service;
 
 import java.sql.*;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
-import modelo.dao.Conexion;
+import modelo.dao.CredencialDAO;
+import modelo.dao.EmpleadoDAO;
+import modelo.dao.RolDAO;
 import modelo.entidad.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class ServiceLogin {
-    
+
     private static ServiceLogin instance;
-    private final Conexion conexion = Conexion.getConexion();
+    private EmpleadoDAO empDAO;
+    private CredencialDAO credDAO;
+    private RolDAO rolDAO;
 
     private ServiceLogin() {
-    };
+        this.empDAO = new EmpleadoDAO();
+        this.credDAO = new CredencialDAO();
+        this.rolDAO = new RolDAO();
+    }
     
     public static ServiceLogin getInstance() {
         if (instance == null) {
@@ -21,50 +27,73 @@ public class ServiceLogin {
         }
         return instance;
     }
-    
-    public OperationResult accederSistema(Credencial crd){
 
-        String sql = "{CALL usp_SelectEmpleado(?,?,?,?,?,?,?,?)}";
-        
-        try(Connection conn = conexion.getConnection();
-                CallableStatement stmt = conn.prepareCall(sql)){
-                    
-            // Configurar parámetros de entrada
-            stmt.setString(1, crd.getUsername());
-            stmt.setString(2, crd.getPassword());
+    public OperationResult accederSistema(Credencial crd) {
 
-            stmt.registerOutParameter(3, Types.VARCHAR);
-            stmt.registerOutParameter(4, Types.VARCHAR);
-            stmt.registerOutParameter(5, Types.VARCHAR);
-            stmt.registerOutParameter(6, Types.INTEGER);
-            stmt.registerOutParameter(7, Types.INTEGER);
-            stmt.registerOutParameter(8, Types.VARCHAR);
-            
-            stmt.execute();
-            
-            Empleado emp = new Empleado();
-            emp.setNombre(stmt.getString(3));
-            emp.setApellidoP(stmt.getString(4));
-            emp.setApellidoM(stmt.getString(5));
+        OperationResult or1 = credDAO.obtenerContrasenia(crd.getUsername());
 
-            Rol rol = new Rol();
-            rol.setIdRol(stmt.getInt(6));
-            
-            int estado = stmt.getInt(7);
-            String mensaje = stmt.getString(8);
-            
-            HashMap<String, Object> map = new HashMap<>();
-            
-            map.put("Empleado", emp);
-            map.put("Rol", rol);
-            
-            return new OperationResult(estado, mensaje, map);
-            
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            return new OperationResult(0, "Error: " + ex.getMessage(), null);
+        switch (or1.getEstadoOperation()) {
+
+            case -1, 0 -> {
+                return new OperationResult(0, or1.getMensaje(), null);
+            }
+            case 1 -> {
+
+                String passhashed = (String) or1.getObjeto().get("password");
+
+                boolean isCorrect = BCrypt.checkpw(crd.getPassword(), passhashed);
+
+                if (isCorrect) {
+
+                    OperationResult or2 = empDAO.obtenerEmpleado(((Integer) (or1.getObjeto().get("empleado_id"))).intValue());
+
+                    switch (or2.getEstadoOperation()) {
+
+                        case -1, 0 -> {
+                            return new OperationResult(0, or2.getMensaje(), null);
+                        }
+                        case 1 -> {
+
+                            Empleado emp = (Empleado) or2.getObjeto().get("Empleado");
+
+                            if (emp.isEstado()) {
+
+                                OperationResult or3 = rolDAO.obtenerRol(emp.getIdEmpleado());
+
+                                switch (or3.getEstadoOperation()) {
+
+                                    case -1, 0 -> {
+                                        return new OperationResult(0, or3.getMensaje(), null);
+                                    }
+                                    case 1 -> {
+
+                                        HashMap<String, Object> map = new HashMap<>();
+
+                                        map.put("Empleado", emp);
+                                        map.put("Rol", ((Integer) (or3.getObjeto().get("rol_id"))).intValue());
+
+                                        return new OperationResult(1, "Ingreso exitoso", map);
+
+                                    }
+                                }
+                            } else {
+                                return new OperationResult(-2, "La cuenta del empleado se ecnuentra INACTIVO", null);
+                            }
+
+                        }
+                    }
+
+                } else {
+
+                    return new OperationResult(-1, "Contraseña incorrecta", null);
+
+                }
+            }
+
         }
-            
+
+        return new OperationResult(0, "", null);
+        
     }
-    
+
 }

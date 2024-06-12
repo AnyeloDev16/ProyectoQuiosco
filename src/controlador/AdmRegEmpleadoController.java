@@ -86,7 +86,11 @@ public class AdmRegEmpleadoController implements MouseListener {
 
             Empleado emp = new Empleado(nombre, apellidoP, apellidoM, telefono, dni);
 
-            Credencial cred = crearCredencial(nombre, apellidoP, apellidoM, dni);           
+            Credencial cred = crearCredencial(nombre, apellidoP, apellidoM, dni);   
+            
+            JOptionPane.showMessageDialog(null, cred.getPassword());
+            
+            cred.setPassword(Credencial.hashearContrasenia(cred.getPassword()));
             
             int rol = vistaRegistrar.jcbxRol.getSelectedIndex() + 1;
 

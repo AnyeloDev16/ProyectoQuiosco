@@ -43,8 +43,6 @@ public class LoginController implements MouseListener{
             
             Credencial crd = new Credencial(user, pass);   
             
-            JOptionPane.showMessageDialog(null, crd.getPassword());
-            
             ServiceLogin servicio = ServiceLogin.getInstance();
             
             OperationResult or = servicio.accederSistema(crd);
@@ -91,14 +89,13 @@ public class LoginController implements MouseListener{
     private void accionIngresar(OperationResult or) {
     
         switch(or.getEstadoOperation()){
-                case -1 -> JOptionPane.showMessageDialog(null,or.getMensaje());
-                case 0 -> JOptionPane.showMessageDialog(null,or.getMensaje());
+                case -2,-1,0 -> JOptionPane.showMessageDialog(null,or.getMensaje());
                 case 1 -> {
                 
                     Empleado emp = (Empleado)or.getObjeto().get("Empleado");
-                    Rol rol = (Rol)or.getObjeto().get("Rol");
+                    int rol_id = (Integer)or.getObjeto().get("Rol");
                 
-                    if(rol.getIdRol() == 1){
+                    if(rol_id == 1){
                         
                         AdministradorVista vistaAdm = new AdministradorVista();
                         
@@ -107,7 +104,7 @@ public class LoginController implements MouseListener{
                         ctrlAdm.iniciar();
                         this.vistaLogin.dispose();
                         
-                    } else if(rol.getIdRol() == 2){
+                    } else if(rol_id == 2){
                         
                         CajeroVista vistaAdm = new CajeroVista();
                         

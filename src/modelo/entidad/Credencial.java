@@ -17,10 +17,10 @@ public final class Credencial {
 
     public Credencial(String username, String password){
         this.username = username;
-        this.password = hashearContrasenia(password);
+        this.password = password;
     }
     
-    public String hashearContrasenia(String password){
+    public static String hashearContrasenia(String password){
         
         int saltos = 12;
         
