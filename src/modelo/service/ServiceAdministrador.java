@@ -7,7 +7,7 @@ import java.sql.*;
 public class ServiceAdministrador {
 
     private static ServiceAdministrador instance;
-    private final Conexion conexion = Conexion.getConexion();
+    private final DatabaseConnector conexion = DatabaseConnector.getConexion();
 
     private ServiceAdministrador() {
     };
@@ -20,7 +20,7 @@ public class ServiceAdministrador {
     }
 
     // Servicios
-    public StoredProcedureResult agregarEmpleadoConRolYCredencias(Empleado emp, Credencial cred, int idrol) {
+    public OperationResult agregarEmpleadoConRolYCredencias(Employee emp, Credential cred, int idrol) {
         String sql = "{CALL usp_InsertEmployeerWithRolAndCredenciales(?,?,?,?,?,?,?,?,?,?)}";
 
         try (Connection conn = conexion.getConnection(); CallableStatement stmt = conn.prepareCall(sql)) {
@@ -43,11 +43,10 @@ public class ServiceAdministrador {
             int estadoInsert = stmt.getInt(9);
             String mensaje = stmt.getString(10);
             
-            return new StoredProcedureResult(estadoInsert, mensaje);
+            return new OperationResult(estadoInsert, mensaje, null);
 
         } catch (SQLException ex) {
-            ex.printStackTrace();
-            return new StoredProcedureResult(0, "Error de base de datos: " + ex.getMessage());
+            return new OperationResult(0, "Error de base de datos: " + ex.getMessage(), null);
         }
         
         

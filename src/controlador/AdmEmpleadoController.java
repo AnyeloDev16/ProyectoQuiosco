@@ -2,16 +2,16 @@ package controlador;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import modelo.entidad.Empleado;
+import modelo.entidad.Employee;
 import vista.AdministradorVista;
 import vista.RegistrarEmpleadoFrm;
 
 public class AdmEmpleadoController implements MouseListener{
 
     AdministradorVista vistaAdm;
-    Empleado modelo;
+    Employee modelo;
 
-    public AdmEmpleadoController(AdministradorVista vistaAdm, Empleado modelo) {
+    public AdmEmpleadoController(AdministradorVista vistaAdm, Employee modelo) {
         this.vistaAdm = vistaAdm;
         this.modelo = modelo;
         this.vistaAdm.jbtnRegitrarNuevoEmpleado.addMouseListener(this);

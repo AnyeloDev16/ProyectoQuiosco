@@ -4,10 +4,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
 import javax.swing.JOptionPane;
-import modelo.entidad.Credencial;
-import modelo.entidad.Empleado;
+import modelo.dao.OperationResult;
+import modelo.entidad.Credential;
+import modelo.entidad.Employee;
 import modelo.service.ServiceAdministrador;
-import modelo.service.StoredProcedureResult;
 import vista.RegistrarEmpleadoFrm;
 
 public class AdmRegEmpleadoController implements MouseListener {
@@ -26,7 +26,7 @@ public class AdmRegEmpleadoController implements MouseListener {
 
     }
 
-    private Credencial crearCredencial(String nom, String apeP, String apeM, String dni) {
+    private Credential crearCredencial(String nom, String apeP, String apeM, String dni) {
 
         // username
         Random rand = new Random();
@@ -69,7 +69,7 @@ public class AdmRegEmpleadoController implements MouseListener {
 
         JOptionPane.showMessageDialog(null, password);
         
-        return new Credencial(username, password);
+        return new Credential(username, password);
 
     }
 
@@ -84,23 +84,23 @@ public class AdmRegEmpleadoController implements MouseListener {
             String dni = vistaRegistrar.jtxtDNI.getText();
             String telefono = vistaRegistrar.jtxtTelefono.getText();
 
-            Empleado emp = new Empleado(nombre, apellidoP, apellidoM, telefono, dni);
+            Employee emp = new Employee(nombre, apellidoP, apellidoM, telefono, dni);
 
-            Credencial cred = crearCredencial(nombre, apellidoP, apellidoM, dni);   
+            Credential cred = crearCredencial(nombre, apellidoP, apellidoM, dni);   
             
             JOptionPane.showMessageDialog(null, cred.getPassword());
             
-            cred.setPassword(Credencial.hashearContrasenia(cred.getPassword()));
+            cred.setPassword(Credential.hashPassword(cred.getPassword()));
             
             int rol = vistaRegistrar.jcbxRol.getSelectedIndex() + 1;
 
             ServiceAdministrador sa = ServiceAdministrador.getInstance();
 
-            StoredProcedureResult spr = sa.agregarEmpleadoConRolYCredencias(emp, cred, rol);
+            OperationResult spr = sa.agregarEmpleadoConRolYCredencias(emp, cred, rol);
 
-            JOptionPane.showMessageDialog(null, spr.getMensaje());
+            JOptionPane.showMessageDialog(null, spr.getMessage());
 
-            if (spr.getEstadoInsert() == 1) {
+            if (spr.getOperationStatus()== 1) {
                 this.vistaRegistrar.dispose();
             }
 

@@ -4,15 +4,15 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
-import modelo.entidad.Empleado;
+import modelo.entidad.Employee;
 import vista.AdministradorVista;
 
 public class AdmMenuController implements MouseListener{
     
     AdministradorVista vistaAdm;
-    Empleado modelo;
+    Employee modelo;
 
-    public AdmMenuController(AdministradorVista vistaAdm, Empleado modelo) {
+    public AdmMenuController(AdministradorVista vistaAdm, Employee modelo) {
         this.vistaAdm = vistaAdm;
         this.modelo = modelo;
         this.vistaAdm.jlblCerrar.addMouseListener(this);

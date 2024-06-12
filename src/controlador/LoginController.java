@@ -1,6 +1,6 @@
 package controlador;
 
-import modelo.service.OperationResult;
+import modelo.dao.OperationResult;
 import modelo.service.ServiceLogin;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -41,7 +41,7 @@ public class LoginController implements MouseListener{
             String user = this.vistaLogin.jtxtUsername.getText();
             String pass = String.valueOf(this.vistaLogin.jpswPassword.getPassword());
             
-            Credencial crd = new Credencial(user, pass);   
+            Credential crd = new Credential(user, pass);   
             
             ServiceLogin servicio = ServiceLogin.getInstance();
             
@@ -88,12 +88,12 @@ public class LoginController implements MouseListener{
 
     private void accionIngresar(OperationResult or) {
     
-        switch(or.getEstadoOperation()){
-                case -2,-1,0 -> JOptionPane.showMessageDialog(null,or.getMensaje());
+        switch(or.getOperationStatus()){
+                case -2,-1,0 -> JOptionPane.showMessageDialog(null,or.getMessage());
                 case 1 -> {
                 
-                    Empleado emp = (Empleado)or.getObjeto().get("Empleado");
-                    int rol_id = (Integer)or.getObjeto().get("Rol");
+                    Employee emp = (Employee)or.getData().get("Empleado");
+                    int rol_id = (Integer)or.getData().get("Rol");
                 
                     if(rol_id == 1){
                         
