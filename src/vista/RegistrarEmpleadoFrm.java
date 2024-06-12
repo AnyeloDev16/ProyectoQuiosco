@@ -153,8 +153,8 @@ public class RegistrarEmpleadoFrm extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jbtnRegistrarEmpleado;
-    private javax.swing.JComboBox<String> jcbxRol;
+    public javax.swing.JButton jbtnRegistrarEmpleado;
+    public javax.swing.JComboBox<String> jcbxRol;
     private javax.swing.JLabel jlblApellidoMaterno;
     private javax.swing.JLabel jlblApellidoPaterno;
     private javax.swing.JLabel jlblDNI;
@@ -165,11 +165,11 @@ public class RegistrarEmpleadoFrm extends javax.swing.JDialog {
     private javax.swing.JPanel jpnlPrincipal;
     private javax.swing.JPanel jpnlRegistro;
     private javax.swing.JPanel jpnlTitulo;
-    private javax.swing.JTextField jtxtApellidoMaterno;
-    private javax.swing.JTextField jtxtApellidoPaterno;
-    private javax.swing.JTextField jtxtDNI;
-    private javax.swing.JTextField jtxtNombre;
-    private javax.swing.JTextField jtxtTelefono;
+    public javax.swing.JTextField jtxtApellidoMaterno;
+    public javax.swing.JTextField jtxtApellidoPaterno;
+    public javax.swing.JTextField jtxtDNI;
+    public javax.swing.JTextField jtxtNombre;
+    public javax.swing.JTextField jtxtTelefono;
     // End of variables declaration//GEN-END:variables
 
 }

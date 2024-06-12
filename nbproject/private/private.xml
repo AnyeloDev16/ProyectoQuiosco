@@ -12,11 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/anyel/OneDrive/Documentos/NetBeansProjects/ProyectoQuiosco/src/controlador/AdministradorController.java</file>
-            <file>file:/C:/Users/anyel/OneDrive/Documentos/NetBeansProjects/ProyectoQuiosco/src/controlador/AdmEmpleadoController.java</file>
-            <file>file:/C:/Users/anyel/OneDrive/Documentos/NetBeansProjects/ProyectoQuiosco/src/vista/RegistrarEmpleadoFrm.java</file>
-            <file>file:/C:/Users/anyel/OneDrive/Documentos/NetBeansProjects/ProyectoQuiosco/src/vista/Login.java</file>
-            <file>file:/C:/Users/anyel/OneDrive/Documentos/NetBeansProjects/ProyectoQuiosco/src/vista/AdministradorVista.java</file>
+            <file>file:/C:/Users/anyel/OneDrive/Documentos/NetBeansProjects/ProyectoQuiosco/src/modelo/entidad/Credencial.java</file>
+            <file>file:/C:/Users/anyel/OneDrive/Documentos/NetBeansProjects/ProyectoQuiosco/src/controlador/AdmRegEmpleadoController.java</file>
+            <file>file:/C:/Users/anyel/OneDrive/Documentos/NetBeansProjects/ProyectoQuiosco/src/main/main.java</file>
+            <file>file:/C:/Users/anyel/OneDrive/Documentos/NetBeansProjects/ProyectoQuiosco/src/controlador/LoginController.java</file>
         </group>
     </open-files>
 </project-private>

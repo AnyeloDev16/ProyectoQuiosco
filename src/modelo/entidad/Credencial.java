@@ -17,7 +17,7 @@ public final class Credencial {
 
     public Credencial(String username, String password){
         this.username = username;
-        this.password = password;
+        this.password = hashearContrasenia(password);
     }
     
     public String hashearContrasenia(String password){

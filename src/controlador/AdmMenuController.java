@@ -7,12 +7,12 @@ import javax.swing.JFrame;
 import modelo.entidad.Empleado;
 import vista.AdministradorVista;
 
-public class AdministradorController implements MouseListener{
+public class AdmMenuController implements MouseListener{
     
     AdministradorVista vistaAdm;
     Empleado modelo;
 
-    public AdministradorController(AdministradorVista vistaAdm, Empleado modelo) {
+    public AdmMenuController(AdministradorVista vistaAdm, Empleado modelo) {
         this.vistaAdm = vistaAdm;
         this.modelo = modelo;
         this.vistaAdm.jlblCerrar.addMouseListener(this);

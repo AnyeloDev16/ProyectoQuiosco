@@ -1,4 +1,4 @@
-package Service;
+package modelo.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

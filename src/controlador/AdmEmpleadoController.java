@@ -16,21 +16,15 @@ public class AdmEmpleadoController implements MouseListener{
         this.modelo = modelo;
         this.vistaAdm.jbtnRegitrarNuevoEmpleado.addMouseListener(this);
     }
-    
-    public void iniciarRegistroEmpleado(RegistrarEmpleadoFrm vistaRegistrar){
-        
-        vistaRegistrar.setLocationRelativeTo(null);
-        vistaRegistrar.setVisible(true);
-        
-    }
-    
+
     @Override
     public void mouseClicked(MouseEvent e) {
     
         if(e.getSource() == vistaAdm.jbtnRegitrarNuevoEmpleado){
             
-            RegistrarEmpleadoFrm vistaRegistrar = new RegistrarEmpleadoFrm(vistaAdm,true);           
-            iniciarRegistroEmpleado(vistaRegistrar);
+            RegistrarEmpleadoFrm vistaRegistrar = new RegistrarEmpleadoFrm(vistaAdm,true);                     
+            AdmRegEmpleadoController ctrlRegEmp = new AdmRegEmpleadoController(vistaRegistrar);
+            ctrlRegEmp.iniciarRegistroEmpleado(vistaRegistrar);
             
         }
         

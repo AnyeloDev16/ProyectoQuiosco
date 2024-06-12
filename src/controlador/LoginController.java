@@ -1,7 +1,7 @@
 package controlador;
 
-import Service.OperationResult;
-import Service.ServiceLogin;
+import modelo.service.OperationResult;
+import modelo.service.ServiceLogin;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -42,6 +42,8 @@ public class LoginController implements MouseListener{
             String pass = String.valueOf(this.vistaLogin.jpswPassword.getPassword());
             
             Credencial crd = new Credencial(user, pass);   
+            
+            JOptionPane.showMessageDialog(null, crd.getPassword());
             
             ServiceLogin servicio = ServiceLogin.getInstance();
             
@@ -100,7 +102,7 @@ public class LoginController implements MouseListener{
                         
                         AdministradorVista vistaAdm = new AdministradorVista();
                         
-                        AdministradorController ctrlAdm = new AdministradorController(vistaAdm, emp);
+                        AdmMenuController ctrlAdm = new AdmMenuController(vistaAdm, emp);
                         
                         ctrlAdm.iniciar();
                         this.vistaLogin.dispose();
