@@ -4,22 +4,28 @@ import modelo.dao.*;
 import modelo.entidad.*;
 import java.sql.*;
 
-public class ServiceAdministrador {
+public class AdminService {
 
-    private static ServiceAdministrador instance;
+    private static AdminService instance;
     private final DatabaseConnector conexion = DatabaseConnector.getConexion();
 
-    private ServiceAdministrador() {
+    private AdminService() {
     };
     
-    public static ServiceAdministrador getInstance() {
+    public static AdminService getInstance() {
         if (instance == null) {
-            instance = new ServiceAdministrador();
+            instance = new AdminService();
         }
         return instance;
     }
 
-    // Servicios
+    /**
+     * Agrega un empleado con rol y credenciales.
+     * @param emp el empleado a agregar
+     * @param cred las credenciales del empleado
+     * @param idrol el ID del rol
+     * @return resultado de la operación
+     */
     public OperationResult agregarEmpleadoConRolYCredencias(Employee emp, Credential cred, int idrol) {
         String sql = "{CALL usp_InsertEmployeerWithRolAndCredenciales(?,?,?,?,?,?,?,?,?,?)}";
 

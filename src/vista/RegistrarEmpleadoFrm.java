@@ -1,8 +1,9 @@
 package vista;
 
+import javax.swing.JOptionPane;
 import vista.tipografia.Tipografia;
 
-public class RegistrarEmpleadoFrm extends javax.swing.JDialog {
+public class RegistrarEmpleadoFrm extends javax.swing.JDialog{
 
     Tipografia fuente;
     
@@ -33,6 +34,21 @@ public class RegistrarEmpleadoFrm extends javax.swing.JDialog {
         this.jcbxRol.setFont(fuente.fuente(fuente.ROBOTO, 0, 16));
         
         this.jbtnRegistrarEmpleado.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+    }
+    
+
+    public void mostrarVentana() {
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+    
+
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+    
+    public void cerrarVentana() {
+        this.dispose();
     }
     
     @SuppressWarnings("unchecked")

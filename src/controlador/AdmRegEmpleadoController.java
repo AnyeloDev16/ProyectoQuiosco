@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import modelo.dao.OperationResult;
 import modelo.entidad.Credential;
 import modelo.entidad.Employee;
-import modelo.service.ServiceAdministrador;
+import modelo.service.AdminService;
 import vista.RegistrarEmpleadoFrm;
 
 public class AdmRegEmpleadoController implements MouseListener {
@@ -20,9 +20,8 @@ public class AdmRegEmpleadoController implements MouseListener {
     }
 
     public void iniciarRegistroEmpleado(RegistrarEmpleadoFrm vistaRegistrar) {
-
-        vistaRegistrar.setLocationRelativeTo(null);
-        vistaRegistrar.setVisible(true);
+        
+        this.vistaRegistrar.mostrarVentana();
 
     }
 
@@ -94,14 +93,14 @@ public class AdmRegEmpleadoController implements MouseListener {
             
             int rol = vistaRegistrar.jcbxRol.getSelectedIndex() + 1;
 
-            ServiceAdministrador sa = ServiceAdministrador.getInstance();
+            AdminService sa = AdminService.getInstance();
 
             OperationResult spr = sa.agregarEmpleadoConRolYCredencias(emp, cred, rol);
 
-            JOptionPane.showMessageDialog(null, spr.getMessage());
+            this.vistaRegistrar.mostrarMensaje(spr.getMessage());
 
             if (spr.getOperationStatus()== 1) {
-                this.vistaRegistrar.dispose();
+                this.vistaRegistrar.cerrarVentana();
             }
 
         }

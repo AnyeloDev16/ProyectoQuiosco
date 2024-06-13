@@ -3,7 +3,6 @@ package controlador;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JFrame;
 import modelo.entidad.Employee;
 import vista.AdministradorVista;
 
@@ -22,18 +21,17 @@ public class AdmMenuController implements MouseListener{
     
     public void iniciar(){
         cargarDatosPersonales();
-        this.vistaAdm.setVisible(true);
-        this.vistaAdm.setLocationRelativeTo(null);
+        this.vistaAdm.mostrarVentana();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
     
         if(e.getSource() == this.vistaAdm.jlblCerrar){
-            this.vistaAdm.dispose();
+            this.vistaAdm.cerrarVentana();
         }
         if(e.getSource() == this.vistaAdm.jlblMinimizar){
-            this.vistaAdm.setState(JFrame.ICONIFIED);
+            this.vistaAdm.minimizarVentana();
         }
         
         if(e.getSource() == this.vistaAdm.jbtnEmpleados){
@@ -49,37 +47,16 @@ public class AdmMenuController implements MouseListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-    
-        if(e.getSource() == this.vistaAdm.jlblCerrar){
-            this.vistaAdm.jlblCerrar.setBackground(new Color(215, 0, 0));
-        }
-        if(e.getSource() == this.vistaAdm.jlblMinimizar){
-            this.vistaAdm.jlblMinimizar.setBackground(new Color(38, 75, 130));
-        }
-        
+ 
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
     
-        if(e.getSource() == this.vistaAdm.jlblCerrar){
-            this.vistaAdm.jlblCerrar.setBackground(Color.red);
-        }
-        if(e.getSource() == this.vistaAdm.jlblMinimizar){
-            this.vistaAdm.jlblMinimizar.setBackground(new Color(41, 87, 164));
-        }
-
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-    
-        if(e.getSource() == this.vistaAdm.jlblCerrar){
-            this.vistaAdm.jlblCerrar.setBackground(new Color(45, 110, 208));
-        }
-        if(e.getSource() == this.vistaAdm.jlblMinimizar){
-            this.vistaAdm.jlblMinimizar.setBackground(new Color(45, 110, 208));
-        }
         
     }   
     

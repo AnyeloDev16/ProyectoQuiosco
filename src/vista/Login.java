@@ -1,16 +1,23 @@
 package vista;
 
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import vista.tipografia.Tipografia;
 
-public class Login extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame implements MouseListener{
 
     Tipografia fuente;
     
     public Login() {
         initComponents();
         this.setShape(new RoundRectangle2D.Double(0,0,getWidth(),getHeight(),30,30));
-        this.setTipografia();      
+        this.setTipografia();
+        this.jlblMinimizar.addMouseListener(this);
+        this.jlblCerrar.addMouseListener(this);
     }
     
     private void setTipografia(){
@@ -25,6 +32,61 @@ public class Login extends javax.swing.JFrame {
         jlblTextOlvido.setFont(fuente.fuente(fuente.ROBOTO, 0, 14));
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+    
+    @Override
+    public void mousePressed(MouseEvent e) {
+        if(e.getSource() == this.jlblCerrar){
+            this.jlblCerrar.setBackground(new Color(215, 0, 0));
+        }
+        if(e.getSource() == this.jlblMinimizar){
+            this.jlblMinimizar.setBackground(new Color(220, 220, 220));
+        }
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        if(e.getSource() == this.jlblCerrar){
+            this.jlblCerrar.setBackground(Color.red);
+        }
+        if(e.getSource() == this.jlblMinimizar){
+            this.jlblMinimizar.setBackground(new Color(239, 239, 239));
+        }
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        if(e.getSource() == this.jlblCerrar){
+            this.jlblCerrar.setBackground(Color.WHITE);
+        }
+        if(e.getSource() == this.jlblMinimizar){
+            this.jlblMinimizar.setBackground(Color.WHITE);
+        }
+    }
+    
+    public void mostrarVentana() {
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+    
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    public void cerrarVentana() {
+        this.dispose();
+    }
+
+    public void minimizarVentana() {
+        this.setState(JFrame.ICONIFIED);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -184,6 +246,7 @@ public class Login extends javax.swing.JFrame {
     public javax.swing.JPasswordField jpswPassword;
     public javax.swing.JTextField jtxtUsername;
     // End of variables declaration//GEN-END:variables
+
 }
 
 

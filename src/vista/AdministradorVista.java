@@ -1,9 +1,14 @@
 package vista;
 
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import vista.tipografia.Tipografia;
 
-public class AdministradorVista extends javax.swing.JFrame {
+public class AdministradorVista extends javax.swing.JFrame implements MouseListener{
 
     Tipografia fuente;
     
@@ -39,6 +44,68 @@ public class AdministradorVista extends javax.swing.JFrame {
         jbtnRegitrarNuevoEmpleado.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    
+        if(e.getSource() == this.jlblCerrar){
+            this.jlblCerrar.setBackground(new Color(215, 0, 0));
+        }
+        if(e.getSource() == this.jlblMinimizar){
+            this.jlblMinimizar.setBackground(new Color(38, 75, 130));
+        }
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    
+        if(e.getSource() == this.jlblCerrar){
+            this.jlblCerrar.setBackground(Color.red);
+        }
+        if(e.getSource() == this.jlblMinimizar){
+            this.jlblMinimizar.setBackground(new Color(41, 87, 164));
+        }
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    
+        if(e.getSource() == this.jlblCerrar){
+            this.jlblCerrar.setBackground(new Color(45, 110, 208));
+        }
+        if(e.getSource() == this.jlblMinimizar){
+            this.jlblMinimizar.setBackground(new Color(45, 110, 208));
+        }
+        
+    }   
+    
+    @Override
+    public void mouseReleased(MouseEvent e) {    
+        
+    }
+    
+    public void mostrarVentana() {
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+    
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    public void cerrarVentana() {
+        this.dispose();
+    }
+
+    public void minimizarVentana() {
+        this.setState(JFrame.ICONIFIED);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -427,4 +494,6 @@ public class AdministradorVista extends javax.swing.JFrame {
     public javax.swing.JTable jtblEmpleados;
     public javax.swing.JTabbedPane jtpnlVentanas;
     // End of variables declaration//GEN-END:variables
+
+    
 }
