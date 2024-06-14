@@ -20,7 +20,7 @@ public class RoleDAO {
      */
     public OperationResult obtenerRol(int idemp) {
 
-        String sql = "SELECT rol_id FROM Empleado_Rol WHERE empleado_id = " + idemp + ";";
+        String sql = "SELECT rol_id FROM Empleado_Rol WHERE empleado_id = ?;";
 
         try (Connection conn = conexion.getConnection(); PreparedStatement stmt = conn.prepareCall(sql)) {
 

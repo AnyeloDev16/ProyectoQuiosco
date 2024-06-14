@@ -19,6 +19,8 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         this.setTipografia();
         this.jtblEmpleados.setDefaultEditor(Object.class, null);
         this.jtblEmpleados.setRowSelectionAllowed(true);
+        this.jlblCerrar.addMouseListener(this);
+        this.jlblMinimizar.addMouseListener(this);
     }
 
     private void setTipografia(){

@@ -35,7 +35,7 @@ public class LoginService {
      * @param crd las credenciales del usuario
      * @return resultado de la operación de acceso
      */
-    public OperationResult accederSistema(Credential crd) {
+    public OperationResult verificarCredenciales(Credential crd) {
 
         OperationResult or1 = credDAO.obtenerContrasenia(crd.getUsername());
 
@@ -76,4 +76,5 @@ public class LoginService {
         
     }
 
+    
 }

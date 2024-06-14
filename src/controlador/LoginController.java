@@ -12,13 +12,16 @@ import vista.Login;
 public class LoginController implements MouseListener {
 
     private final Login vistaLogin;
+    private final LoginService serviceLogin;
 
     public LoginController(Login vistaLogin) {
+        this.serviceLogin = LoginService.getInstance();
         this.vistaLogin = vistaLogin;
         this.vistaLogin.jlblMinimizar.addMouseListener(this);
         this.vistaLogin.jlblCerrar.addMouseListener(this);
-        this.vistaLogin.jbtnIngresar.addMouseListener(vistaLogin);
+        this.vistaLogin.jbtnIngresar.addMouseListener(this);
     }
+    
 
     public void iniciar() {
         vistaLogin.mostrarVentana();
@@ -28,29 +31,31 @@ public class LoginController implements MouseListener {
     public void mouseClicked(MouseEvent e) {
 
         if (e.getSource() == this.vistaLogin.jlblCerrar) {
+            
             vistaLogin.cerrarVentana();
-        }
-        if (e.getSource() == this.vistaLogin.jlblMinimizar) {
+            
+        } else if (e.getSource() == this.vistaLogin.jlblMinimizar) {
+            
             vistaLogin.minimizarVentana();
-        }
-        if (e.getSource() == this.vistaLogin.jbtnIngresar) {
+            
+        } else if (e.getSource() == this.vistaLogin.jbtnIngresar) {
 
             String user = this.vistaLogin.jtxtUsername.getText();
             String pass = String.valueOf(this.vistaLogin.jpswPassword.getPassword());
 
+            // TODO: Metodo que verifique los datos ingresados (user y pass)
+            
             Credential crd = new Credential(user, pass);
 
-            LoginService servicio = LoginService.getInstance();
+            OperationResult or = serviceLogin.verificarCredenciales(crd);
 
-            OperationResult or = servicio.accederSistema(crd);
-
-            accionIngresar(or);
+            accederSistema(or);
 
         }
 
     }
 
-    private void accionIngresar(OperationResult or) {
+    private void accederSistema(OperationResult or) {
 
         switch (or.getOperationStatus()) {
             case -2, -1, 0 ->
@@ -67,14 +72,14 @@ public class LoginController implements MouseListener {
                     AdmMenuController ctrlAdm = new AdmMenuController(vistaAdm, emp);
 
                     ctrlAdm.iniciar();
-                    this.vistaLogin.dispose();
+                    vistaLogin.cerrarVentana();
 
                 } else if (rol_id == 2) {
 
-                    CajeroVista vistaAdm = new CajeroVista();
-
-                    CajeroController ctrlCaj = new CajeroController();
-
+//                    CajeroVista vistaCaj = new CajeroVista();
+//
+//                    CajeroController ctrlCaj = new CajeroController(vistaCaj, emp);
+//
 //                    ctrlCaj.iniciar();
                     this.vistaLogin.dispose();
 
