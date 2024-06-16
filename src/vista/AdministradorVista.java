@@ -317,7 +317,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
 
         jtblEmpleados.setBackground(new java.awt.Color(220, 220, 220));
         jtblEmpleados.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jtblEmpleados.setForeground(new java.awt.Color(255, 255, 255));
+        jtblEmpleados.setForeground(new java.awt.Color(0, 0, 0));
         jtblEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},

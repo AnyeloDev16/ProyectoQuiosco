@@ -27,6 +27,7 @@ public class AdminService {
      * @return resultado de la operación
      */
     public OperationResult agregarEmpleadoConRolYCredencias(Employee emp, Credential cred, int idrol) {
+        
         String sql = "{CALL usp_InsertEmployeerWithRolAndCredenciales(?,?,?,?,?,?,?,?,?,?)}";
 
         try (Connection conn = conexion.getConnection(); CallableStatement stmt = conn.prepareCall(sql)) {
@@ -53,9 +54,7 @@ public class AdminService {
 
         } catch (SQLException ex) {
             return new OperationResult(0, "Error de base de datos: " + ex.getMessage(), null);
-        }
-        
-        
+        }     
         
     }
 

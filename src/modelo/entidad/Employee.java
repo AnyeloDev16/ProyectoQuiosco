@@ -1,5 +1,6 @@
 package modelo.entidad;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +21,20 @@ public class Employee {
     private String telefono;
     private String dni;
     private boolean estado;
+    private String rol;
 
+    @Builder
+    public Employee(int idEmpleado, String nombre, String apellidoP, String apellidoM, String telefono, String dni, boolean estado, String rol) {
+        this.idEmpleado = idEmpleado;
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.telefono = telefono;
+        this.dni = dni;
+        this.estado = estado;
+        this.rol = rol;
+    } 
+    
     /**
      * Constructor que inicializa un empleado nuevo con los datos
      * proporcionados.

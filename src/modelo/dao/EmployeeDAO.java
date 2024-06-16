@@ -1,6 +1,7 @@
 package modelo.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import modelo.entidad.Employee;
 
@@ -56,6 +57,55 @@ public class EmployeeDAO {
 
         }
 
+    }
+    
+    public OperationResult obtenerListaEmpleado(){
+        
+        ArrayList<Employee> listaEmpleado = new ArrayList<>();
+        
+        String sql = "SELECT [e].*, [r].nombre_rol FROM Empleado [e]"
+                + " INNER JOIN Empleado_Rol [er] ON [e].empleado_id = [er].empleado_id"
+                + " INNER JOIN ROL [r] ON [er].rol_id = [r].rol_id"
+                + " WHERE [e].empleado_id <> 1";
+        
+        try(Connection conn = conexion.getConnection();
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql)){
+            
+            while(rs.next()){
+                
+                
+                Employee emp = Employee.builder()
+                        .idEmpleado(rs.getInt(1))
+                        .nombre(rs.getString(2))
+                        .apellidoP(rs.getString(3))
+                        .apellidoM(rs.getString(4))
+                        .telefono(rs.getString(5))
+                        .dni(rs.getString(6))
+                        .estado(rs.getBoolean(7))
+                        .rol(rs.getString(8))
+                        .build();
+                
+                listaEmpleado.add(emp);
+                
+            }
+            
+            HashMap<String, Object> map = new HashMap<>();
+            
+            map.put("ListaEmpleado", listaEmpleado);
+            
+            if(listaEmpleado.isEmpty()){
+                return new OperationResult(-1, "No se encontro ningun empleado", map);
+            } else {
+                return new OperationResult(1, "Se encontro registro de empleados", map);
+            }
+            
+        } catch (SQLException ex) {
+        
+            return new OperationResult(0, "Error: " + ex.getMessage(), null);
+            
+        }
+        
     }
 
 }
