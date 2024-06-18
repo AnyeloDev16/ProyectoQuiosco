@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import vista.tipografia.Tipografia;
 
 public class AdministradorVista extends javax.swing.JFrame implements MouseListener{
@@ -16,9 +17,13 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         initComponents();
         this.setLocationRelativeTo(null);
         this.setShape(new RoundRectangle2D.Double(0,0,getWidth(),getHeight(),30,30));
+        this.jtblEmpleados.getColumnModel().getColumn(0).setPreferredWidth(80);
+        this.jtblEmpleados.getColumnModel().getColumn(1).setPreferredWidth(120);
+        this.jtblEmpleados.getColumnModel().getColumn(2).setPreferredWidth(250);
         this.setTipografia();
         this.jtblEmpleados.setDefaultEditor(Object.class, null);
         this.jtblEmpleados.setRowSelectionAllowed(true);
+        this.jtblEmpleados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.jlblCerrar.addMouseListener(this);
         this.jlblMinimizar.addMouseListener(this);
     }
@@ -34,16 +39,25 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jbtnCerrarSesion.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
         //Empleado
         jlblTituloEmpleado.setFont(fuente.fuente(fuente.ROBOTO, 1, 30));
+        jtblEmpleados.setFont(fuente.fuente(fuente.ROBOTO, 0, 16));
         jlblInfEmpleado.setFont(fuente.fuente(fuente.ROBOTO, 1, 24));
-        jlblEstadoE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
-        jlblNombreCE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
-        jlblRolE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
-        jlblDniE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
-        jlblTelefonoE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
-        jlblUsernameE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
-        jlblPassE.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
-        jbtnCambiarEstado.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
-        jbtnRegitrarNuevoEmpleado.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
+        jlblEstadoE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblNombreCE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblRolE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblIDE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblDniE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblTelefonoE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblUsernameE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblPassE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jbtnCambiarEstado.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jbtnRegitrarNuevoEmpleado.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblEstadoI.setFont(fuente.fuente(fuente.ROBOTO, 1, 24));
+        jlblNombreCI.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblRolI.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblDniI.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblTelefonoI.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblIDI.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblUsernameI.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
     }
 
     @Override
@@ -148,7 +162,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jlblDniE = new javax.swing.JLabel();
         jlblEstadoE = new javax.swing.JLabel();
         jlblNombreCE = new javax.swing.JLabel();
-        jlblRolE = new javax.swing.JLabel();
+        jlblIDE = new javax.swing.JLabel();
         jlblTelefonoE = new javax.swing.JLabel();
         jlblTelefonoI = new javax.swing.JLabel();
         jlblNombreCI = new javax.swing.JLabel();
@@ -158,11 +172,14 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jlblPassE = new javax.swing.JLabel();
         jlblUsernameE = new javax.swing.JLabel();
         jlblUsernameI = new javax.swing.JLabel();
-        jlblPassI = new javax.swing.JLabel();
         jbtnCambiarEstado = new javax.swing.JButton();
+        jbtnCambiarContrasenia = new javax.swing.JButton();
+        jlblRolE = new javax.swing.JLabel();
+        jlblIDI = new javax.swing.JLabel();
         jlblTituloEmpleado = new javax.swing.JLabel();
         jbtnRegitrarNuevoEmpleado = new javax.swing.JButton();
         jpnlProducto = new javax.swing.JPanel();
+        jlblTituloEmpleado1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1200, 700));
@@ -347,57 +364,89 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jPanel1.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jlblDniE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlblDniE.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jlblDniE.setForeground(new java.awt.Color(51, 51, 51));
         jlblDniE.setText("DNI:");
-        jPanel1.add(jlblDniE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+        jPanel1.add(jlblDniE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, -1));
 
-        jlblEstadoE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlblEstadoE.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jlblEstadoE.setForeground(new java.awt.Color(51, 51, 51));
         jlblEstadoE.setText("Estado:");
         jPanel1.add(jlblEstadoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        jlblNombreCE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlblNombreCE.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jlblNombreCE.setForeground(new java.awt.Color(51, 51, 51));
         jlblNombreCE.setText("Nombre completo:");
         jPanel1.add(jlblNombreCE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
-        jlblRolE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jlblRolE.setForeground(new java.awt.Color(51, 51, 51));
-        jlblRolE.setText("Rol:");
-        jPanel1.add(jlblRolE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        jlblIDE.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblIDE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblIDE.setText("ID:");
+        jPanel1.add(jlblIDE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
-        jlblTelefonoE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlblTelefonoE.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jlblTelefonoE.setForeground(new java.awt.Color(51, 51, 51));
         jlblTelefonoE.setText("Teléfono:");
-        jPanel1.add(jlblTelefonoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
-        jPanel1.add(jlblTelefonoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 130, 20));
-        jPanel1.add(jlblNombreCI, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 270, 20));
-        jPanel1.add(jlblRolI, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 130, 20));
-        jPanel1.add(jlblDniI, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 130, 20));
+        jPanel1.add(jlblTelefonoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
 
-        jlblEstadoI.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jlblTelefonoI.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblTelefonoI.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jlblTelefonoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 110, 22));
+
+        jlblNombreCI.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblNombreCI.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jlblNombreCI, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, 270, 22));
+
+        jlblRolI.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblRolI.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jlblRolI, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 110, 22));
+
+        jlblDniI.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblDniI.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jlblDniI, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 110, 22));
+
+        jlblEstadoI.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblEstadoI.setForeground(new java.awt.Color(0, 0, 0));
         jlblEstadoI.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jlblEstadoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 140, 30));
+        jPanel1.add(jlblEstadoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 25, 140, 30));
 
-        jlblPassE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlblPassE.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jlblPassE.setForeground(new java.awt.Color(51, 51, 51));
         jlblPassE.setText("Password:");
-        jPanel1.add(jlblPassE, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, -1, -1));
+        jPanel1.add(jlblPassE, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, -1, -1));
 
-        jlblUsernameE.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jlblUsernameE.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jlblUsernameE.setForeground(new java.awt.Color(51, 51, 51));
         jlblUsernameE.setText("Username:");
-        jPanel1.add(jlblUsernameE, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
-        jPanel1.add(jlblUsernameI, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 140, 20));
-        jPanel1.add(jlblPassI, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 140, 20));
+        jPanel1.add(jlblUsernameE, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, -1, -1));
+
+        jlblUsernameI.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblUsernameI.setForeground(new java.awt.Color(0, 0, 0));
+        jlblUsernameI.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jlblUsernameI, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 140, 22));
 
         jbtnCambiarEstado.setBackground(new java.awt.Color(76, 175, 80));
+        jbtnCambiarEstado.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jbtnCambiarEstado.setForeground(new java.awt.Color(255, 255, 255));
         jbtnCambiarEstado.setText("Cambiar estado");
-        jPanel1.add(jbtnCambiarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 130, 30));
+        jPanel1.add(jbtnCambiarEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 25, 160, 30));
 
-        jpnlEmpleado.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 480, 250));
+        jbtnCambiarContrasenia.setBackground(new java.awt.Color(76, 175, 80));
+        jbtnCambiarContrasenia.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jbtnCambiarContrasenia.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnCambiarContrasenia.setText("Cambiar contraseña");
+        jPanel1.add(jbtnCambiarContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 190, 30));
+
+        jlblRolE.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblRolE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblRolE.setText("Rol:");
+        jPanel1.add(jlblRolE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        jlblIDI.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblIDI.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(jlblIDI, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 110, 22));
+
+        jpnlEmpleado.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 480, 310));
 
         jlblTituloEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jlblTituloEmpleado.setForeground(new java.awt.Color(29, 53, 87));
@@ -405,24 +454,20 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jpnlEmpleado.add(jlblTituloEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 630, 40));
 
         jbtnRegitrarNuevoEmpleado.setBackground(new java.awt.Color(51, 153, 255));
+        jbtnRegitrarNuevoEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jbtnRegitrarNuevoEmpleado.setForeground(new java.awt.Color(255, 255, 255));
         jbtnRegitrarNuevoEmpleado.setText("Registrar nuevo Empleado");
-        jpnlEmpleado.add(jbtnRegitrarNuevoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 420, 190, 50));
+        jpnlEmpleado.add(jbtnRegitrarNuevoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 470, 360, 50));
 
         jtpnlVentanas.addTab("Empleado", jpnlEmpleado);
 
         jpnlProducto.setBackground(new java.awt.Color(239, 239, 239));
+        jpnlProducto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jpnlProductoLayout = new javax.swing.GroupLayout(jpnlProducto);
-        jpnlProducto.setLayout(jpnlProductoLayout);
-        jpnlProductoLayout.setHorizontalGroup(
-            jpnlProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
-        );
-        jpnlProductoLayout.setVerticalGroup(
-            jpnlProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 665, Short.MAX_VALUE)
-        );
+        jlblTituloEmpleado1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jlblTituloEmpleado1.setForeground(new java.awt.Color(29, 53, 87));
+        jlblTituloEmpleado1.setText("ADMINISTRACIÓN DE PRODUCTOS:");
+        jpnlProducto.add(jlblTituloEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 630, 40));
 
         jtpnlVentanas.addTab("Producto", jpnlProducto);
 
@@ -458,6 +503,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    public javax.swing.JButton jbtnCambiarContrasenia;
     public javax.swing.JButton jbtnCambiarEstado;
     public javax.swing.JButton jbtnCerrarSesion;
     public javax.swing.JButton jbtnEmpleados;
@@ -471,19 +517,21 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     public javax.swing.JLabel jlblEmpleadoNombre;
     private javax.swing.JLabel jlblEstadoE;
     public javax.swing.JLabel jlblEstadoI;
+    private javax.swing.JLabel jlblIDE;
+    public javax.swing.JLabel jlblIDI;
     private javax.swing.JLabel jlblInfEmpleado;
     public javax.swing.JLabel jlblLogoTienda;
     public javax.swing.JLabel jlblMinimizar;
     private javax.swing.JLabel jlblNombreCE;
     public javax.swing.JLabel jlblNombreCI;
     private javax.swing.JLabel jlblPassE;
-    public javax.swing.JLabel jlblPassI;
     private javax.swing.JLabel jlblRolE;
     public javax.swing.JLabel jlblRolI;
     private javax.swing.JLabel jlblTelefonoE;
     public javax.swing.JLabel jlblTelefonoI;
     private javax.swing.JLabel jlblTitulo;
     private javax.swing.JLabel jlblTituloEmpleado;
+    private javax.swing.JLabel jlblTituloEmpleado1;
     private javax.swing.JLabel jlblUsernameE;
     public javax.swing.JLabel jlblUsernameI;
     private javax.swing.JPanel jpnlBarraOpciones;

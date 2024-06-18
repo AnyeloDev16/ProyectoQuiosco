@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.HashMap;
 import modelo.dao.CredentialDAO;
 import modelo.dao.EmployeeDAO;
+import modelo.dao.RetornoDeInformacionEmpleado;
 import modelo.dao.RoleDAO;
 import modelo.entidad.*;
 import org.mindrot.jbcrypt.BCrypt;
@@ -50,7 +51,7 @@ public class LoginService {
             return new OperationResult(-1, "Contraseña incorrecta", null);
         }
 
-        OperationResult or2 = empDAO.obtenerEmpleado((Integer) or1.getData().get("empleado_id"));
+        OperationResult or2 = empDAO.obtenerEmpleado((Integer) or1.getData().get("empleado_id"), RetornoDeInformacionEmpleado.INFO_COMPLETA);
 
         if (or2.getOperationStatus() != 1) {
             return new OperationResult(0, or2.getMessage(), null);
