@@ -30,7 +30,7 @@ public final class AdmEmpleadoController implements MouseListener, ListSelection
         this.empDAO = new EmployeeDAO();
         this.creDAO = new CredentialDAO();
         cargarEmpleados();
-        this.vistaAdm.jbtnRegitrarNuevoEmpleado.addMouseListener(this);
+        this.vistaAdm.jbtnRegistrarNuevoEmpleado.addMouseListener(this);
         this.vistaAdm.jbtnCambiarEstado.addMouseListener(this);
         this.vistaAdm.jbtnCambiarContrasenia.addMouseListener(this);
         this.vistaAdm.jtblEmpleados.getSelectionModel().addListSelectionListener(this);
@@ -39,11 +39,11 @@ public final class AdmEmpleadoController implements MouseListener, ListSelection
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        if (e.getSource() == vistaAdm.jbtnRegitrarNuevoEmpleado) {
+        if (e.getSource() == vistaAdm.jbtnRegistrarNuevoEmpleado) {
 
             RegistrarEmpleadoFrm vistaRegistrar = new RegistrarEmpleadoFrm(vistaAdm, true);
             AdmRegEmpleadoController ctrlRegEmp = new AdmRegEmpleadoController(vistaRegistrar);
-            ctrlRegEmp.iniciarRegistroEmpleado(vistaRegistrar);
+            ctrlRegEmp.iniciarRegistroEmpleado();
             
             cargarEmpleados();
 
@@ -71,19 +71,16 @@ public final class AdmEmpleadoController implements MouseListener, ListSelection
 
         } else if (e.getSource() == vistaAdm.jbtnCambiarContrasenia) {
 
-            int id_emp = Integer.parseInt(vistaAdm.jlblIDI.getText());
-
             String nuevaContrasenia = JOptionPane.showInputDialog(null, "Ingrese la nueva contraseña:", "Cambio de Contraseña", JOptionPane.PLAIN_MESSAGE);
 
             if (nuevaContrasenia != null && !nuevaContrasenia.trim().isEmpty()) {
                 
+                int id_emp = Integer.parseInt(vistaAdm.jlblIDI.getText());
+                
                 OperationResult or = creDAO.cambiarContrasenia(id_emp, nuevaContrasenia);
 
-                if (or.getOperationStatus() == 1) {
-                    JOptionPane.showMessageDialog(null, "Contraseña actualizada correctamente.");
-                } else {
-                    JOptionPane.showMessageDialog(null, or.getMessage());
-                }
+                JOptionPane.showMessageDialog(null, or.getMessage());
+                
             } else {
                 JOptionPane.showMessageDialog(null, "La contraseña no puede estar vacía.");
             }

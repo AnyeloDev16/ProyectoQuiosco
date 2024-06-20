@@ -50,7 +50,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jlblUsernameE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
         jlblPassE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
         jbtnCambiarEstado.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
-        jbtnRegitrarNuevoEmpleado.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jbtnRegistrarNuevoEmpleado.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
         jlblEstadoI.setFont(fuente.fuente(fuente.ROBOTO, 1, 24));
         jlblNombreCI.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
         jlblRolI.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
@@ -58,6 +58,25 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jlblTelefonoI.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
         jlblIDI.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
         jlblUsernameI.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        //Producto
+        jlblTituloProducto.setFont(fuente.fuente(fuente.ROBOTO, 1, 30));
+        jlblInfProducto.setFont(fuente.fuente(fuente.ROBOTO, 1, 24));
+        jlblNombreP.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblNombreProductoI.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblPrecioCompraE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblPrecioCompra.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblPrecioVentaE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblPrecioVenta.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblCantidad.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblStockE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jlblProductoImgE.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jbtnCambiarPrecioCompra.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jbtnCambiarPrecioVenta.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jbtnCambiarStock.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jbtnCambiarImagen.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jbtnRegistrarNuevoProducto.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jbtnEliminarProducto.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
+        jtblProductos.setFont(fuente.fuente(fuente.ROBOTO, 0, 16));
     }
 
     @Override
@@ -177,9 +196,33 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jlblRolE = new javax.swing.JLabel();
         jlblIDI = new javax.swing.JLabel();
         jlblTituloEmpleado = new javax.swing.JLabel();
-        jbtnRegitrarNuevoEmpleado = new javax.swing.JButton();
+        jbtnRegistrarNuevoEmpleado = new javax.swing.JButton();
         jpnlProducto = new javax.swing.JPanel();
-        jlblTituloEmpleado1 = new javax.swing.JLabel();
+        jlblTituloProducto = new javax.swing.JLabel();
+        jSeparator9 = new javax.swing.JSeparator();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtblProductos = new javax.swing.JTable();
+        jlblInfProducto = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jlblNombreP = new javax.swing.JLabel();
+        jlblProductoImgE = new javax.swing.JLabel();
+        jlblNombreProductoI = new javax.swing.JLabel();
+        jlblPrecioVenta = new javax.swing.JLabel();
+        jlblCantidad = new javax.swing.JLabel();
+        jbtnCambiarPrecioCompra = new javax.swing.JButton();
+        jlblPrecioCompra = new javax.swing.JLabel();
+        jlblPrecioCompraE = new javax.swing.JLabel();
+        jlblPrecioVentaE = new javax.swing.JLabel();
+        jlblStockE = new javax.swing.JLabel();
+        jbtnCambiarImagen = new javax.swing.JButton();
+        jbtnCambiarStock = new javax.swing.JButton();
+        jbtnCambiarPrecioVenta = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jlblProductoImg = new javax.swing.JLabel();
+        jlblIDProductoE = new javax.swing.JLabel();
+        jlblIDProductoI = new javax.swing.JLabel();
+        jbtnEliminarProducto = new javax.swing.JButton();
+        jbtnRegistrarNuevoProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1200, 700));
@@ -453,21 +496,165 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jlblTituloEmpleado.setText("ADMINISTRACIÓN DE EMPLEADOS:");
         jpnlEmpleado.add(jlblTituloEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 630, 40));
 
-        jbtnRegitrarNuevoEmpleado.setBackground(new java.awt.Color(51, 153, 255));
-        jbtnRegitrarNuevoEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jbtnRegitrarNuevoEmpleado.setForeground(new java.awt.Color(255, 255, 255));
-        jbtnRegitrarNuevoEmpleado.setText("Registrar nuevo Empleado");
-        jpnlEmpleado.add(jbtnRegitrarNuevoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 470, 360, 50));
+        jbtnRegistrarNuevoEmpleado.setBackground(new java.awt.Color(51, 153, 255));
+        jbtnRegistrarNuevoEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jbtnRegistrarNuevoEmpleado.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnRegistrarNuevoEmpleado.setText("Registrar nuevo Empleado");
+        jpnlEmpleado.add(jbtnRegistrarNuevoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 470, 360, 50));
 
         jtpnlVentanas.addTab("Empleado", jpnlEmpleado);
 
-        jpnlProducto.setBackground(new java.awt.Color(239, 239, 239));
+        jpnlProducto.setBackground(new java.awt.Color(255, 255, 255));
         jpnlProducto.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jlblTituloEmpleado1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jlblTituloEmpleado1.setForeground(new java.awt.Color(29, 53, 87));
-        jlblTituloEmpleado1.setText("ADMINISTRACIÓN DE PRODUCTOS:");
-        jpnlProducto.add(jlblTituloEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 630, 40));
+        jlblTituloProducto.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jlblTituloProducto.setForeground(new java.awt.Color(29, 53, 87));
+        jlblTituloProducto.setText("ADMINISTRACIÓN DE PRODUCTOS:");
+        jpnlProducto.add(jlblTituloProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 540, 40));
+
+        jSeparator9.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jpnlProducto.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 10, 550));
+
+        jScrollPane2.setBorder(null);
+
+        jtblProductos.setBackground(new java.awt.Color(220, 220, 220));
+        jtblProductos.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        jtblProductos.setForeground(new java.awt.Color(0, 0, 0));
+        jtblProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Producto ID", "Nombre del Producto", "Cantidad"
+            }
+        ));
+        jtblProductos.setFocusable(false);
+        jtblProductos.setOpaque(false);
+        jtblProductos.setRequestFocusEnabled(false);
+        jtblProductos.getTableHeader().setResizingAllowed(false);
+        jtblProductos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(jtblProductos);
+
+        jpnlProducto.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, -1, 530));
+
+        jlblInfProducto.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jlblInfProducto.setForeground(new java.awt.Color(29, 53, 87));
+        jlblInfProducto.setText("Información del Producto:");
+        jpnlProducto.add(jlblInfProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 440, 30));
+
+        jPanel2.setBackground(new java.awt.Color(211, 211, 211));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlblNombreP.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblNombreP.setForeground(new java.awt.Color(51, 51, 51));
+        jlblNombreP.setText("Producto nombre:");
+        jPanel2.add(jlblNombreP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jlblProductoImgE.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblProductoImgE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblProductoImgE.setText("Imagen del Producto:");
+        jPanel2.add(jlblProductoImgE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+
+        jlblNombreProductoI.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblNombreProductoI.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(jlblNombreProductoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 230, 22));
+
+        jlblPrecioVenta.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblPrecioVenta.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(jlblPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 80, 22));
+
+        jlblCantidad.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblCantidad.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(jlblCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 80, 22));
+
+        jbtnCambiarPrecioCompra.setBackground(new java.awt.Color(76, 175, 80));
+        jbtnCambiarPrecioCompra.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jbtnCambiarPrecioCompra.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnCambiarPrecioCompra.setText("Cambiar Precio");
+        jPanel2.add(jbtnCambiarPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 95, 170, 30));
+
+        jlblPrecioCompra.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblPrecioCompra.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(jlblPrecioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 80, 22));
+
+        jlblPrecioCompraE.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblPrecioCompraE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblPrecioCompraE.setText("Precio de Compra:");
+        jPanel2.add(jlblPrecioCompraE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        jlblPrecioVentaE.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblPrecioVentaE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblPrecioVentaE.setText("Precio de Venta:");
+        jPanel2.add(jlblPrecioVentaE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+
+        jlblStockE.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblStockE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblStockE.setText("Cantidad:");
+        jPanel2.add(jlblStockE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
+
+        jbtnCambiarImagen.setBackground(new java.awt.Color(76, 175, 80));
+        jbtnCambiarImagen.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jbtnCambiarImagen.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnCambiarImagen.setText("Cambiar Imagen");
+        jPanel2.add(jbtnCambiarImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 305, 170, 30));
+
+        jbtnCambiarStock.setBackground(new java.awt.Color(76, 175, 80));
+        jbtnCambiarStock.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jbtnCambiarStock.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnCambiarStock.setText("Cambiar el Stock");
+        jPanel2.add(jbtnCambiarStock, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 175, 170, 30));
+
+        jbtnCambiarPrecioVenta.setBackground(new java.awt.Color(76, 175, 80));
+        jbtnCambiarPrecioVenta.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jbtnCambiarPrecioVenta.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnCambiarPrecioVenta.setText("Cambiar Precio");
+        jPanel2.add(jbtnCambiarPrecioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 135, 170, 30));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblProductoImg, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblProductoImg, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 120, 120));
+
+        jlblIDProductoE.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblIDProductoE.setForeground(new java.awt.Color(51, 51, 51));
+        jlblIDProductoE.setText("ID:");
+        jPanel2.add(jlblIDProductoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        jlblIDProductoI.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblIDProductoI.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(jlblIDProductoI, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 80, 22));
+
+        jpnlProducto.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 480, 410));
+
+        jbtnEliminarProducto.setBackground(new java.awt.Color(51, 153, 255));
+        jbtnEliminarProducto.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jbtnEliminarProducto.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnEliminarProducto.setText("Eliminar Producto");
+        jpnlProducto.add(jbtnEliminarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 580, 190, 50));
+
+        jbtnRegistrarNuevoProducto.setBackground(new java.awt.Color(51, 153, 255));
+        jbtnRegistrarNuevoProducto.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jbtnRegistrarNuevoProducto.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnRegistrarNuevoProducto.setText("Registrar nuevo Producto");
+        jpnlProducto.add(jbtnRegistrarNuevoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 580, 240, 50));
 
         jtpnlVentanas.addTab("Producto", jpnlProducto);
 
@@ -491,7 +678,10 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
@@ -503,14 +693,22 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     public javax.swing.JButton jbtnCambiarContrasenia;
     public javax.swing.JButton jbtnCambiarEstado;
+    public javax.swing.JButton jbtnCambiarImagen;
+    public javax.swing.JButton jbtnCambiarPrecioCompra;
+    public javax.swing.JButton jbtnCambiarPrecioVenta;
+    public javax.swing.JButton jbtnCambiarStock;
     public javax.swing.JButton jbtnCerrarSesion;
+    public javax.swing.JButton jbtnEliminarProducto;
     public javax.swing.JButton jbtnEmpleados;
     public javax.swing.JButton jbtnInicio;
     public javax.swing.JButton jbtnProducto;
-    public javax.swing.JButton jbtnRegitrarNuevoEmpleado;
+    public javax.swing.JButton jbtnRegistrarNuevoEmpleado;
+    public javax.swing.JButton jbtnRegistrarNuevoProducto;
     public javax.swing.JButton jbtnVentas;
+    public javax.swing.JLabel jlblCantidad;
     public javax.swing.JLabel jlblCerrar;
     private javax.swing.JLabel jlblDniE;
     public javax.swing.JLabel jlblDniI;
@@ -519,19 +717,31 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     public javax.swing.JLabel jlblEstadoI;
     private javax.swing.JLabel jlblIDE;
     public javax.swing.JLabel jlblIDI;
+    private javax.swing.JLabel jlblIDProductoE;
+    public javax.swing.JLabel jlblIDProductoI;
     private javax.swing.JLabel jlblInfEmpleado;
+    private javax.swing.JLabel jlblInfProducto;
     public javax.swing.JLabel jlblLogoTienda;
     public javax.swing.JLabel jlblMinimizar;
     private javax.swing.JLabel jlblNombreCE;
     public javax.swing.JLabel jlblNombreCI;
+    private javax.swing.JLabel jlblNombreP;
+    public javax.swing.JLabel jlblNombreProductoI;
     private javax.swing.JLabel jlblPassE;
+    public javax.swing.JLabel jlblPrecioCompra;
+    private javax.swing.JLabel jlblPrecioCompraE;
+    public javax.swing.JLabel jlblPrecioVenta;
+    private javax.swing.JLabel jlblPrecioVentaE;
+    public javax.swing.JLabel jlblProductoImg;
+    private javax.swing.JLabel jlblProductoImgE;
     private javax.swing.JLabel jlblRolE;
     public javax.swing.JLabel jlblRolI;
+    private javax.swing.JLabel jlblStockE;
     private javax.swing.JLabel jlblTelefonoE;
     public javax.swing.JLabel jlblTelefonoI;
     private javax.swing.JLabel jlblTitulo;
     private javax.swing.JLabel jlblTituloEmpleado;
-    private javax.swing.JLabel jlblTituloEmpleado1;
+    private javax.swing.JLabel jlblTituloProducto;
     private javax.swing.JLabel jlblUsernameE;
     public javax.swing.JLabel jlblUsernameI;
     private javax.swing.JPanel jpnlBarraOpciones;
@@ -542,6 +752,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     private javax.swing.JPanel jpnlProducto;
     private javax.swing.JPanel jpnlVentas;
     public javax.swing.JTable jtblEmpleados;
+    public javax.swing.JTable jtblProductos;
     public javax.swing.JTabbedPane jtpnlVentanas;
     // End of variables declaration//GEN-END:variables
 

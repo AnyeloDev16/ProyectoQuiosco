@@ -19,7 +19,7 @@ public class AdmRegEmpleadoController implements MouseListener {
         this.vistaRegistrar.jbtnRegistrarEmpleado.addMouseListener(this);
     }
 
-    public void iniciarRegistroEmpleado(RegistrarEmpleadoFrm vistaRegistrar) {
+    public void iniciarRegistroEmpleado() {
         
         this.vistaRegistrar.mostrarVentana();
 
