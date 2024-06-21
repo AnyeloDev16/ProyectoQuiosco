@@ -20,10 +20,16 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         this.jtblEmpleados.getColumnModel().getColumn(0).setPreferredWidth(80);
         this.jtblEmpleados.getColumnModel().getColumn(1).setPreferredWidth(120);
         this.jtblEmpleados.getColumnModel().getColumn(2).setPreferredWidth(250);
+        this.jtblProductos.getColumnModel().getColumn(0).setPreferredWidth(80);
+        this.jtblProductos.getColumnModel().getColumn(1).setPreferredWidth(250);
+        this.jtblProductos.getColumnModel().getColumn(2).setPreferredWidth(120);
         this.setTipografia();
         this.jtblEmpleados.setDefaultEditor(Object.class, null);
         this.jtblEmpleados.setRowSelectionAllowed(true);
         this.jtblEmpleados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.jtblProductos.setDefaultEditor(Object.class, null);
+        this.jtblProductos.setRowSelectionAllowed(true);
+        this.jtblProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.jlblCerrar.addMouseListener(this);
         this.jlblMinimizar.addMouseListener(this);
     }

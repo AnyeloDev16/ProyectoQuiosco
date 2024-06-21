@@ -83,7 +83,7 @@ public class AdmMenuController implements MouseListener{
             cambiarColor(vistaAdm.jbtnProducto);
             if(!isOpenVentaProducto){
                 AdmProductoController proCtrl = new AdmProductoController(vistaAdm, modelo);
-                isOpenVentaEmpleado = true;
+                isOpenVentaProducto = true;
             }          
             this.vistaAdm.jtpnlVentanas.setSelectedIndex(3);
                      

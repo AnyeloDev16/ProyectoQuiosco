@@ -21,9 +21,7 @@ public final class AdmEmpleadoController implements MouseListener, ListSelection
 
     EmployeeDAO empDAO;
     CredentialDAO creDAO;
-
-    ArrayList<Employee> listaEmp;
-
+    
     public AdmEmpleadoController(AdministradorVista vistaAdm, Employee modelo) {
         this.vistaAdm = vistaAdm;
         this.modelo = modelo;
@@ -33,7 +31,7 @@ public final class AdmEmpleadoController implements MouseListener, ListSelection
         this.vistaAdm.jbtnRegistrarNuevoEmpleado.addMouseListener(this);
         this.vistaAdm.jbtnCambiarEstado.addMouseListener(this);
         this.vistaAdm.jbtnCambiarContrasenia.addMouseListener(this);
-        this.vistaAdm.jtblEmpleados.getSelectionModel().addListSelectionListener(this);
+        this.vistaAdm.jtblEmpleados.getSelectionModel().addListSelectionListener(this);      
     }
 
     @Override
@@ -93,7 +91,7 @@ public final class AdmEmpleadoController implements MouseListener, ListSelection
 
         OperationResult or = empDAO.obtenerListaEmpleadoConRol();
 
-        listaEmp = (ArrayList<Employee>) or.getData().get("ListaEmpleado");
+        ArrayList<Employee> listaEmp = (ArrayList<Employee>) or.getData().get("ListaEmpleado");
 
         DefaultTableModel model = (DefaultTableModel) vistaAdm.jtblEmpleados.getModel();
 

@@ -2,14 +2,20 @@ package controlador;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 import modelo.dao.OperationResult;
 import modelo.dao.ProductDAO;
 import modelo.entidad.Employee;
+import modelo.entidad.Product;
 import vista.AdministradorVista;
 import vista.RegistrarProductoFrm;
 
-public class AdmProductoController implements MouseListener{
+public final class AdmProductoController implements MouseListener, ListSelectionListener{
     
     AdministradorVista vistaAdm;
     Employee modelo;
@@ -20,10 +26,12 @@ public class AdmProductoController implements MouseListener{
         this.vistaAdm = vistaAdm;
         this.modelo = modelo;
         this.productoDAO = new ProductDAO();
+        cargarProductos();
         this.vistaAdm.jbtnRegistrarNuevoProducto.addMouseListener(this);
         this.vistaAdm.jbtnCambiarPrecioCompra.addMouseListener(this);
         this.vistaAdm.jbtnCambiarPrecioVenta.addMouseListener(this);
         this.vistaAdm.jbtnCambiarStock.addMouseListener(this);
+        this.vistaAdm.jtblProductos.getSelectionModel().addListSelectionListener(this);
     }
 
     @Override
@@ -86,7 +94,67 @@ public class AdmProductoController implements MouseListener{
         }
         
     }
+    
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+    
+        if (e.getValueIsAdjusting()) {
 
+            ListSelectionModel lsm = (ListSelectionModel) e.getSource();
+
+            if (!lsm.isSelectionEmpty()) {
+                int selectedRow = lsm.getMinSelectionIndex();
+
+                if (selectedRow != -1) {
+
+                    if (lsm == vistaAdm.jtblProductos.getSelectionModel()) {
+
+                        int id_pro = (Integer) vistaAdm.jtblProductos.getValueAt(selectedRow, 0);
+
+                        OperationResult or = productoDAO.obtenerProducto(id_pro);
+
+                        Product pro = (Product) or.getData().get("Producto");
+
+                        vistaAdm.jlblIDProductoI.setText(vistaAdm.jtblProductos.getValueAt(selectedRow, 0).toString());
+                        vistaAdm.jlblNombreProductoI.setText(vistaAdm.jtblProductos.getValueAt(selectedRow, 1).toString());
+                        vistaAdm.jlblPrecioCompra.setText(String.valueOf(pro.getPrecioCompra()));
+                        vistaAdm.jlblPrecioVenta.setText(String.valueOf(pro.getPrecioVenta()));
+                        vistaAdm.jlblCantidad.setText(String.valueOf(pro.getCantidad()));
+                        
+                        vistaAdm.jlblProductoImg.setIcon(pro.getFoto());
+                        
+                    }
+
+                }
+            }
+        }
+    
+    }
+
+    public void cargarProductos(){
+        
+        OperationResult or = productoDAO.obtenerListaProductos();
+
+        ArrayList<Product> listaPro = (ArrayList<Product>) or.getData().get("ListaProducto");
+
+        DefaultTableModel model = (DefaultTableModel) vistaAdm.jtblProductos.getModel();
+
+        model.setRowCount(0);
+
+        listaPro.stream()
+                .forEach(p -> {
+
+                    Object[] rowData = {
+                        p.getIdProducto(),
+                        p.getNombreProducto(),
+                        p.getCantidad()
+                    };
+                    model.addRow(rowData);
+
+                });
+        
+    }
+    
     @Override
     public void mousePressed(MouseEvent e) {
     }
@@ -102,5 +170,5 @@ public class AdmProductoController implements MouseListener{
     @Override
     public void mouseExited(MouseEvent e) {
     }
-    
+ 
 }
