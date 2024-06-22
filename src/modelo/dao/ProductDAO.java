@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import modelo.entidad.Product;
@@ -24,7 +26,7 @@ public class ProductDAO {
             stmt.setString(1, producto.getNombreProducto());
             stmt.setDouble(2, producto.getPrecioCompra());
             stmt.setDouble(3, producto.getPrecioVenta());
-            
+
             BufferedImage bufferedImage = iconToBufferedImage(producto.getFoto());
             byte[] imageBytes = bufferedImageToBytes(bufferedImage);
             stmt.setBytes(4, imageBytes);
@@ -43,67 +45,87 @@ public class ProductDAO {
 
     }
     
-    public OperationResult obtenerProducto(int idProducto){
+    public OperationResult eliminarProducto(int idProducto){
         
-        String sql = "SELECT precio_compra, precio_venta, stock, foto FROM Producto WHERE producto_id = ?;";
-     
+        String sql = "DELETE FROM Producto WHERE producto_id = ?;";
+        
         try(Connection conn = conexion.getConnection();
                 PreparedStatement stmt = conn.prepareCall(sql)){
             
             stmt.setInt(1, idProducto);
             
-            try(ResultSet rs = stmt.executeQuery()){
-                
-                if(rs.next()){
-                
-                    Product producto = Product.builder()
-                                        .PrecioCompra(rs.getDouble(1))
-                                        .PrecioVenta(rs.getDouble(2))
-                                        .cantidad(rs.getInt(3))
-                                        .foto(new ImageIcon(rs.getBytes(4)))
-                                        .build();
-                
-                    HashMap<String, Object> map = new HashMap<>();
-
-                    map.put("Producto", producto);
-                
-                    return new OperationResult(1, "Se encontro el producto", map);
-                    
-                } else {
-                    return new OperationResult(-1, "No se encontro ningun producto", null);
-                }
-                
+            if(stmt.executeUpdate() > 0){
+                return new OperationResult(1, "Producto eliminado correctamente", null);
+            } else {
+                return new OperationResult(-1, "No se pudo eliminar el producto", null);
             }
             
         } catch (SQLException ex) {
-            
+        
             return new OperationResult(0, "Error: " + ex.getMessage(), null);
             
         }
         
     }
-    
-    public OperationResult obtenerListaProductos(){
-        
+
+    public OperationResult obtenerProducto(int idProducto) {
+
+        String sql = "SELECT precio_compra, precio_venta, stock, foto FROM Producto WHERE producto_id = ?;";
+
+        try (Connection conn = conexion.getConnection(); PreparedStatement stmt = conn.prepareCall(sql)) {
+
+            stmt.setInt(1, idProducto);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                if (rs.next()) {
+
+                    Product producto = Product.builder()
+                            .PrecioCompra(rs.getDouble(1))
+                            .PrecioVenta(rs.getDouble(2))
+                            .cantidad(rs.getInt(3))
+                            .foto(new ImageIcon(rs.getBytes(4)))
+                            .build();
+
+                    HashMap<String, Object> map = new HashMap<>();
+
+                    map.put("Producto", producto);
+
+                    return new OperationResult(1, "Se encontro el producto", map);
+
+                } else {
+                    return new OperationResult(-1, "No se encontro ningun producto", null);
+                }
+
+            }
+
+        } catch (SQLException ex) {
+
+            return new OperationResult(0, "Error: " + ex.getMessage(), null);
+
+        }
+
+    }
+
+    public OperationResult obtenerListaProductos() {
+
         ArrayList<Product> listaProducto = new ArrayList<>();
         String sql = "SELECT producto_id, nombre_producto, stock FROM Producto";
-     
-        try(Connection conn = conexion.getConnection();
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(sql)){
-            
-            while(rs.next()){
-                
+
+        try (Connection conn = conexion.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+
                 Product producto = Product.builder()
-                                        .idProducto(rs.getInt(1))
-                                        .nombreProducto(rs.getString(2))
-                                        .cantidad(rs.getInt(3))
-                                        .build();
-                
+                        .idProducto(rs.getInt(1))
+                        .nombreProducto(rs.getString(2))
+                        .cantidad(rs.getInt(3))
+                        .build();
+
                 listaProducto.add(producto);
-                
+
             }
-            
+
             HashMap<String, Object> map = new HashMap<>();
 
             map.put("ListaProducto", listaProducto);
@@ -113,18 +135,18 @@ public class ProductDAO {
             } else {
                 return new OperationResult(1, "Se encontro registro de empleados", map);
             }
-            
+
         } catch (SQLException ex) {
-            
+
             return new OperationResult(0, "Error: " + ex.getMessage(), null);
-            
+
         }
-        
+
     }
 
     public OperationResult cambiarPrecioCompra(int idProduct, double nuevoPrecioCompra) {
 
-        String sql = "UPDATE Producto SET precio_compra = ? WHERE id_producto = ?";
+        String sql = "UPDATE Producto SET precio_compra = ? WHERE producto_id = ?";
 
         try (Connection conn = conexion.getConnection(); PreparedStatement stmt = conn.prepareCall(sql)) {
 
@@ -147,7 +169,7 @@ public class ProductDAO {
 
     public OperationResult cambiarPrecioVenta(int idProduct, double nuevoPrecioVenta) {
 
-        String sql = "UPDATE Producto SET precio_venta = ? WHERE id_producto = ?";
+        String sql = "UPDATE Producto SET precio_venta = ? WHERE producto_id = ?";
 
         try (Connection conn = conexion.getConnection(); PreparedStatement stmt = conn.prepareCall(sql)) {
 
@@ -170,7 +192,7 @@ public class ProductDAO {
 
     public OperationResult cambiarStock(int idProduct, int nuevaCantidad) {
 
-        String sql = "UPDATE Producto SET stock = ? WHERE id_producto = ?";
+        String sql = "UPDATE Producto SET stock = ? WHERE producto_id = ?";
 
         try (Connection conn = conexion.getConnection(); PreparedStatement stmt = conn.prepareCall(sql)) {
 
@@ -192,10 +214,10 @@ public class ProductDAO {
     }
 
     private byte[] bufferedImageToBytes(BufferedImage bufferedImage) throws IOException {
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    ImageIO.write(bufferedImage, "jpg", baos); // Cambia "jpg" por el formato de tu imagen si es necesario.
-    return baos.toByteArray();
-}
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageIO.write(bufferedImage, "jpg", baos); // Cambia "jpg" por el formato de tu imagen si es necesario.
+        return baos.toByteArray();
+    }
 
     private BufferedImage iconToBufferedImage(ImageIcon icon) {
         BufferedImage bufferedImage = new BufferedImage(

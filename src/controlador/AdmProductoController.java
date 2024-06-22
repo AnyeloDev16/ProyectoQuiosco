@@ -15,11 +15,11 @@ import modelo.entidad.Product;
 import vista.AdministradorVista;
 import vista.RegistrarProductoFrm;
 
-public final class AdmProductoController implements MouseListener, ListSelectionListener{
-    
+public final class AdmProductoController implements MouseListener, ListSelectionListener {
+
     AdministradorVista vistaAdm;
     Employee modelo;
-    
+
     ProductDAO productoDAO;
 
     public AdmProductoController(AdministradorVista vistaAdm, Employee modelo) {
@@ -31,73 +31,107 @@ public final class AdmProductoController implements MouseListener, ListSelection
         this.vistaAdm.jbtnCambiarPrecioCompra.addMouseListener(this);
         this.vistaAdm.jbtnCambiarPrecioVenta.addMouseListener(this);
         this.vistaAdm.jbtnCambiarStock.addMouseListener(this);
+        this.vistaAdm.jbtnEliminarProducto.addMouseListener(this);
         this.vistaAdm.jtblProductos.getSelectionModel().addListSelectionListener(this);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-    
-        if(e.getSource() == vistaAdm.jbtnRegistrarNuevoProducto){
-            
+
+        if (e.getSource() == vistaAdm.jbtnRegistrarNuevoProducto) {
+
             RegistrarProductoFrm vistaRegistrar = new RegistrarProductoFrm(vistaAdm, true);
-            AdmRegProductoController regProdControler = new AdmRegProductoController(vistaRegistrar);            
+            AdmRegProductoController regProdControler = new AdmRegProductoController(vistaRegistrar);
             regProdControler.iniciarRegistroEmpleado();
-            
-        } else if (e.getSource() == vistaAdm.jbtnCambiarPrecioCompra){
-            
+            cargarProductos();
+
+        } else if (e.getSource() == vistaAdm.jbtnCambiarPrecioCompra) {
+
             String nuevoPrecioCompra = JOptionPane.showInputDialog(null, "Ingrese el nuevo Precio de Compra:", "Cambio de Precio", JOptionPane.PLAIN_MESSAGE);
-            
-            int nuevoPrecio = Integer.parseInt(nuevoPrecioCompra);
-            
+
+            double nuevoPrecio = Double.parseDouble(nuevoPrecioCompra);
+
             int idProducto = Integer.parseInt(vistaAdm.jlblIDProductoI.getText());
-            
+
             OperationResult or = productoDAO.cambiarPrecioCompra(idProducto, nuevoPrecio);
-            
+
             vistaAdm.mostrarMensaje(or.getMessage());
-            
-            if(or.getOperationStatus() == 1){
+
+            if (or.getOperationStatus() == 1) {
                 vistaAdm.jlblPrecioCompra.setText(nuevoPrecioCompra);
             }
-            
-        } else if (e.getSource() == vistaAdm.jbtnCambiarPrecioVenta){
-            
+
+        } else if (e.getSource() == vistaAdm.jbtnCambiarPrecioVenta) {
+
             String nuevoPrecioVenta = JOptionPane.showInputDialog(null, "Ingrese el nuevo Precio de Venta:", "Cambio de Precio", JOptionPane.PLAIN_MESSAGE);
-            
-            int nuevoPrecio = Integer.parseInt(nuevoPrecioVenta);
-            
+
+            double nuevoPrecio = Double.parseDouble(nuevoPrecioVenta);
+
             int idProducto = Integer.parseInt(vistaAdm.jlblIDProductoI.getText());
-            
+
             OperationResult or = productoDAO.cambiarPrecioVenta(idProducto, nuevoPrecio);
-            
+
             vistaAdm.mostrarMensaje(or.getMessage());
-            
-            if(or.getOperationStatus() == 1){
+
+            if (or.getOperationStatus() == 1) {
                 vistaAdm.jlblPrecioVenta.setText(nuevoPrecioVenta);
             }
-            
-        } else if (e.getSource() == vistaAdm.jbtnCambiarStock){
-            
-            String nuevoStock = JOptionPane.showInputDialog(null, "Ingrese el nuevo Precio de Venta:", "Cambio de Precio", JOptionPane.PLAIN_MESSAGE);
-            
+
+        } else if (e.getSource() == vistaAdm.jbtnCambiarStock) {
+
+            String nuevoStock = JOptionPane.showInputDialog(null, "Ingrese la nueva cantidad:", "Cambio de cantidad", JOptionPane.PLAIN_MESSAGE);
+
             int nuevaCantidad = Integer.parseInt(nuevoStock);
-            
+
             int idProducto = Integer.parseInt(vistaAdm.jlblIDProductoI.getText());
-            
+
             OperationResult or = productoDAO.cambiarStock(idProducto, nuevaCantidad);
-            
+
             vistaAdm.mostrarMensaje(or.getMessage());
-            
-            if(or.getOperationStatus() == 1){
+
+            if (or.getOperationStatus() == 1) {
                 vistaAdm.jlblCantidad.setText(nuevoStock);
+                int i = vistaAdm.jtblProductos.getSelectedRow();
+                vistaAdm.jtblProductos.setValueAt(nuevaCantidad, i, 2);
             }
+
+        } else if (e.getSource() == vistaAdm.jbtnEliminarProducto) {
             
+            int opcion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar este producto?",
+                    "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+            if (opcion == JOptionPane.YES_OPTION) {
+                
+                int idProducto = Integer.parseInt(vistaAdm.jlblIDProductoI.getText());
+                
+                OperationResult or = productoDAO.eliminarProducto(idProducto);
+
+                vistaAdm.mostrarMensaje(or.getMessage());
+
+                if (or.getOperationStatus() == 1) {
+                    vistaAdm.jlblNombreProductoI.setText("");
+                    vistaAdm.jlblIDProductoI.setText("");
+                    vistaAdm.jlblPrecioCompra.setText("");
+                    vistaAdm.jlblPrecioVenta.setText("");
+                    vistaAdm.jlblCantidad.setText("");
+                    vistaAdm.jlblProductoImg.setIcon(null);
+
+                    int filaSeleccionada = vistaAdm.jtblProductos.getSelectedRow();
+                    if (filaSeleccionada != -1) {
+                        DefaultTableModel modeloT = (DefaultTableModel) vistaAdm.jtblProductos.getModel();
+                        modeloT.removeRow(filaSeleccionada);
+                    } else {
+                        vistaAdm.mostrarMensaje("No se ha seleccionado ningún producto para eliminar.");
+                    }
+                }
+            }
         }
-        
+
     }
-    
+
     @Override
     public void valueChanged(ListSelectionEvent e) {
-    
+
         if (e.getValueIsAdjusting()) {
 
             ListSelectionModel lsm = (ListSelectionModel) e.getSource();
@@ -120,19 +154,19 @@ public final class AdmProductoController implements MouseListener, ListSelection
                         vistaAdm.jlblPrecioCompra.setText(String.valueOf(pro.getPrecioCompra()));
                         vistaAdm.jlblPrecioVenta.setText(String.valueOf(pro.getPrecioVenta()));
                         vistaAdm.jlblCantidad.setText(String.valueOf(pro.getCantidad()));
-                        
+
                         vistaAdm.jlblProductoImg.setIcon(pro.getFoto());
-                        
+
                     }
 
                 }
             }
         }
-    
+
     }
 
-    public void cargarProductos(){
-        
+    public void cargarProductos() {
+
         OperationResult or = productoDAO.obtenerListaProductos();
 
         ArrayList<Product> listaPro = (ArrayList<Product>) or.getData().get("ListaProducto");
@@ -152,9 +186,9 @@ public final class AdmProductoController implements MouseListener, ListSelection
                     model.addRow(rowData);
 
                 });
-        
+
     }
-    
+
     @Override
     public void mousePressed(MouseEvent e) {
     }
@@ -170,5 +204,5 @@ public final class AdmProductoController implements MouseListener, ListSelection
     @Override
     public void mouseExited(MouseEvent e) {
     }
- 
+
 }
