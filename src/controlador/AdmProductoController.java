@@ -2,7 +2,10 @@ package controlador;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -15,7 +18,7 @@ import modelo.entidad.Product;
 import vista.AdministradorVista;
 import vista.RegistrarProductoFrm;
 
-public final class AdmProductoController implements MouseListener, ListSelectionListener {
+public final class AdmProductoController implements MouseListener, ListSelectionListener, Redimensionable {
 
     AdministradorVista vistaAdm;
     Employee modelo;
@@ -31,6 +34,7 @@ public final class AdmProductoController implements MouseListener, ListSelection
         this.vistaAdm.jbtnCambiarPrecioCompra.addMouseListener(this);
         this.vistaAdm.jbtnCambiarPrecioVenta.addMouseListener(this);
         this.vistaAdm.jbtnCambiarStock.addMouseListener(this);
+        this.vistaAdm.jbtnCambiarImagen.addMouseListener(this);
         this.vistaAdm.jbtnEliminarProducto.addMouseListener(this);
         this.vistaAdm.jtblProductos.getSelectionModel().addListSelectionListener(this);
     }
@@ -95,15 +99,37 @@ public final class AdmProductoController implements MouseListener, ListSelection
                 vistaAdm.jtblProductos.setValueAt(nuevaCantidad, i, 2);
             }
 
-        } else if (e.getSource() == vistaAdm.jbtnEliminarProducto) {
+        } else if (e.getSource() == vistaAdm.jbtnCambiarImagen) {
+
+            int idProducto = Integer.parseInt(vistaAdm.jlblIDProductoI.getText());
             
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("Archivos de imagen", "jpg", "jpeg", "png"));
+            int seleccion = fileChooser.showOpenDialog(null);
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                File archivo = fileChooser.getSelectedFile();
+                String rutaArchivo = archivo.getAbsolutePath();
+                ImageIcon imagen = redimensionar(rutaArchivo, 108, 108);
+
+                OperationResult or = productoDAO.cambiarFoto(idProducto, imagen);
+
+                vistaAdm.mostrarMensaje(or.getMessage());
+
+                if (or.getOperationStatus() == 1) {
+                    vistaAdm.jlblProductoImg.setIcon(imagen);
+                }
+
+            }
+
+        } else if (e.getSource() == vistaAdm.jbtnEliminarProducto) {
+
             int opcion = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar este producto?",
                     "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
 
             if (opcion == JOptionPane.YES_OPTION) {
-                
+
                 int idProducto = Integer.parseInt(vistaAdm.jlblIDProductoI.getText());
-                
+
                 OperationResult or = productoDAO.eliminarProducto(idProducto);
 
                 vistaAdm.mostrarMensaje(or.getMessage());

@@ -48,7 +48,7 @@ public class AdmRegEmpleadoController implements MouseListener {
         };
 
         // password
-        int numAlepass = rand.nextInt(3) + 1;
+        int numAlepass = rand.nextInt(5) + 1;
 
         String password = switch (numAlepass) {
 
@@ -65,8 +65,6 @@ public class AdmRegEmpleadoController implements MouseListener {
             default ->
                 "";
         };
-
-        JOptionPane.showMessageDialog(null, password);
         
         return new Credential(username, password);
 

@@ -16,8 +16,6 @@ public class main {
         LoginController loginctrl = new LoginController(mv);
         
         loginctrl.iniciar();
-
-        
         
     }
 

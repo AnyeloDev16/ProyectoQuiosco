@@ -142,8 +142,8 @@ public class RegistrarProductoFrm extends javax.swing.JDialog{
 
         jbtnSeleccionarImagen.setBackground(new java.awt.Color(39, 174, 96));
         jbtnSeleccionarImagen.setForeground(new java.awt.Color(255, 255, 255));
-        jbtnSeleccionarImagen.setText("<html><p>Seleccionar<br>Imagen</p></html>");
-        jpnlRegistro.add(jbtnSeleccionarImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 100, 52));
+        jbtnSeleccionarImagen.setText("<html><p style=\"text-align: center;\">Seleccionar<br>Imagen</p></html>");
+        jpnlRegistro.add(jbtnSeleccionarImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 110, 52));
 
         jpnlPrincipal.add(jpnlRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 400, 400));
 

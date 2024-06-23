@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import modelo.entidad.Product;
@@ -143,6 +141,45 @@ public class ProductDAO {
         }
 
     }
+    
+    public OperationResult obtenerListaProductosVenta() {
+
+        ArrayList<Product> listaProducto = new ArrayList<>();
+        String sql = "SELECT producto_id, nombre_producto, precio_venta, foto FROM Producto";
+
+        try (Connection conn = conexion.getConnection();
+                Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+
+                Product producto = Product.builder()
+                        .idProducto(rs.getInt(1))
+                        .nombreProducto(rs.getString(2))
+                        .PrecioVenta(rs.getDouble(3))
+                        .foto(new ImageIcon(rs.getBytes(4)))
+                        .build();
+
+                listaProducto.add(producto);
+
+            }
+
+            HashMap<String, Object> map = new HashMap<>();
+
+            map.put("ListaProducto", listaProducto);
+
+            if (listaProducto.isEmpty()) {
+                return new OperationResult(-1, "No se encontro ningun producto", map);
+            } else {
+                return new OperationResult(1, "Se encontro registro de empleados", map);
+            }
+
+        } catch (SQLException ex) {
+
+            return new OperationResult(0, "Error: " + ex.getMessage(), null);
+
+        }
+
+    }
 
     public OperationResult cambiarPrecioCompra(int idProduct, double nuevoPrecioCompra) {
 
@@ -208,6 +245,32 @@ public class ProductDAO {
             }
 
         } catch (SQLException ex) {
+            return new OperationResult(0, "Error: " + ex.getMessage(), null);
+        }
+
+    }
+    
+    public OperationResult cambiarFoto(int idProduct, ImageIcon nuevaFoto) {
+
+        String sql = "UPDATE Producto SET foto = ? WHERE producto_id = ?";
+
+        try (Connection conn = conexion.getConnection(); PreparedStatement stmt = conn.prepareCall(sql)) {
+
+            BufferedImage bufferedImage = iconToBufferedImage(nuevaFoto);
+            byte[] imageBytes = bufferedImageToBytes(bufferedImage);
+            stmt.setBytes(1, imageBytes);
+            
+            stmt.setInt(2, idProduct);
+
+            int rowsAffected = stmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                return new OperationResult(1, "Foto actualizada correctamente", null);
+            } else {
+                return new OperationResult(-1, "Producto no encontrado", null);
+            }
+
+        } catch (Exception ex) {
             return new OperationResult(0, "Error: " + ex.getMessage(), null);
         }
 

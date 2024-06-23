@@ -178,6 +178,15 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jtpnlVentanas = new javax.swing.JTabbedPane();
         jpnlInicio = new javax.swing.JPanel();
         jpnlVentas = new javax.swing.JPanel();
+        jSeparator13 = new javax.swing.JSeparator();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtblVentas = new javax.swing.JTable();
+        jlblInfEmpleado1 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jlblEstadoI1 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jlblTituloEmpleado1 = new javax.swing.JLabel();
         jpnlEmpleado = new javax.swing.JPanel();
         jSeparator8 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -265,8 +274,10 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jpnlBarraOpciones.setBackground(new java.awt.Color(41, 87, 164));
         jpnlBarraOpciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jlblLogoTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/LogoPerfil (1).png"))); // NOI18N
         jlblLogoTienda.setOpaque(true);
-        jpnlBarraOpciones.add(jlblLogoTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, 110));
+        jlblLogoTienda.setPreferredSize(new java.awt.Dimension(108, 88));
+        jpnlBarraOpciones.add(jlblLogoTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 108, 88));
 
         jlblEmpleadoNombre.setForeground(new java.awt.Color(255, 255, 255));
         jlblEmpleadoNombre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -359,17 +370,62 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jtpnlVentanas.addTab("Inicio", jpnlInicio);
 
         jpnlVentas.setBackground(new java.awt.Color(255, 255, 255));
+        jpnlVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jpnlVentasLayout = new javax.swing.GroupLayout(jpnlVentas);
-        jpnlVentas.setLayout(jpnlVentasLayout);
-        jpnlVentasLayout.setHorizontalGroup(
-            jpnlVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
-        );
-        jpnlVentasLayout.setVerticalGroup(
-            jpnlVentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 665, Short.MAX_VALUE)
-        );
+        jSeparator13.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jpnlVentas.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 10, 550));
+
+        jScrollPane3.setBorder(null);
+
+        jtblVentas.setBackground(new java.awt.Color(220, 220, 220));
+        jtblVentas.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        jtblVentas.setForeground(new java.awt.Color(0, 0, 0));
+        jtblVentas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Venta ID", "Fecha", "Metodo de Pago", "Total de Venta"
+            }
+        ));
+        jtblVentas.setFocusable(false);
+        jtblVentas.setOpaque(false);
+        jtblVentas.setRequestFocusEnabled(false);
+        jtblVentas.getTableHeader().setResizingAllowed(false);
+        jtblVentas.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(jtblVentas);
+
+        jpnlVentas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 450, 530));
+
+        jlblInfEmpleado1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jlblInfEmpleado1.setForeground(new java.awt.Color(29, 53, 87));
+        jlblInfEmpleado1.setText("Información completa de la Venta:");
+        jpnlVentas.add(jlblInfEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 440, 30));
+
+        jPanel4.setBackground(new java.awt.Color(211, 211, 211));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlblEstadoI1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jlblEstadoI1.setForeground(new java.awt.Color(0, 0, 0));
+        jlblEstadoI1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jlblEstadoI1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 25, 140, 30));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane4.setViewportView(jTextArea1);
+
+        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 440, 390));
+
+        jpnlVentas.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 480, 430));
+
+        jlblTituloEmpleado1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jlblTituloEmpleado1.setForeground(new java.awt.Color(29, 53, 87));
+        jlblTituloEmpleado1.setText("HISTORIAL DE VENTAS:");
+        jpnlVentas.add(jlblTituloEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 430, 40));
 
         jtpnlVentanas.addTab("Ventas", jpnlVentas);
 
@@ -686,12 +742,16 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -700,6 +760,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTextArea jTextArea1;
     public javax.swing.JButton jbtnCambiarContrasenia;
     public javax.swing.JButton jbtnCambiarEstado;
     public javax.swing.JButton jbtnCambiarImagen;
@@ -721,11 +782,13 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     public javax.swing.JLabel jlblEmpleadoNombre;
     private javax.swing.JLabel jlblEstadoE;
     public javax.swing.JLabel jlblEstadoI;
+    public javax.swing.JLabel jlblEstadoI1;
     private javax.swing.JLabel jlblIDE;
     public javax.swing.JLabel jlblIDI;
     private javax.swing.JLabel jlblIDProductoE;
     public javax.swing.JLabel jlblIDProductoI;
     private javax.swing.JLabel jlblInfEmpleado;
+    private javax.swing.JLabel jlblInfEmpleado1;
     private javax.swing.JLabel jlblInfProducto;
     public javax.swing.JLabel jlblLogoTienda;
     public javax.swing.JLabel jlblMinimizar;
@@ -747,6 +810,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     public javax.swing.JLabel jlblTelefonoI;
     private javax.swing.JLabel jlblTitulo;
     private javax.swing.JLabel jlblTituloEmpleado;
+    private javax.swing.JLabel jlblTituloEmpleado1;
     private javax.swing.JLabel jlblTituloProducto;
     private javax.swing.JLabel jlblUsernameE;
     public javax.swing.JLabel jlblUsernameI;
@@ -759,6 +823,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     private javax.swing.JPanel jpnlVentas;
     public javax.swing.JTable jtblEmpleados;
     public javax.swing.JTable jtblProductos;
+    public javax.swing.JTable jtblVentas;
     public javax.swing.JTabbedPane jtpnlVentanas;
     // End of variables declaration//GEN-END:variables
 

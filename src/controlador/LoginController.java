@@ -76,11 +76,11 @@ public class LoginController implements MouseListener {
 
                 } else if (rol_id == 2) {
 
-//                    CajeroVista vistaCaj = new CajeroVista();
-//
-//                    CajeroController ctrlCaj = new CajeroController(vistaCaj, emp);
-//
-//                    ctrlCaj.iniciar();
+                    CajeroVista vistaCaj = new CajeroVista();
+
+                    CajeroMenuController ctrlCaj = new CajeroMenuController(vistaCaj, emp);
+
+                    ctrlCaj.iniciar();
                     this.vistaLogin.dispose();
 
                 }
