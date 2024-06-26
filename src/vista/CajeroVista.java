@@ -42,7 +42,12 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
         //Empleado
         jlblTituloEmpleado.setFont(fuente.fuente(fuente.ROBOTO, 1, 30));
         jtblDetalleVenta.setFont(fuente.fuente(fuente.ROBOTO, 0, 16));
-        jlblInfEmpleado.setFont(fuente.fuente(fuente.ROBOTO, 1, 24));
+        jlblMetodoPago.setFont(fuente.fuente(fuente.ROBOTO, 1, 20));
+        jlblTotalVentaE.setFont(fuente.fuente(fuente.ROBOTO, 1, 20));
+        jlblTotalPagado.setFont(fuente.fuente(fuente.ROBOTO, 1, 20));
+        jlblPrecioTotal.setFont(fuente.fuente(fuente.ROBOTO, 1, 20));
+        jtxtTotalPagado.setFont(fuente.fuente(fuente.ROBOTO, 1, 20));
+        jcbxMetodoPago.setFont(fuente.fuente(fuente.ROBOTO, 1, 14));
 
     }
 
@@ -141,15 +146,19 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
         jSeparator8 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblDetalleVenta = new javax.swing.JTable();
-        jlblInfEmpleado = new javax.swing.JLabel();
+        jlblMetodoPago = new javax.swing.JLabel();
         jlblTituloEmpleado = new javax.swing.JLabel();
         jbtnEliminar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jpnlListaProductos = new javax.swing.JPanel();
-        jbtnRegistrarNuevoEmpleado1 = new javax.swing.JButton();
+        jbtnRegistrarVenta = new javax.swing.JButton();
         jbtnEliminarTodo = new javax.swing.JButton();
         jlblInfEmpleado2 = new javax.swing.JLabel();
         jlblPrecioTotal = new javax.swing.JLabel();
+        jcbxMetodoPago = new javax.swing.JComboBox<>();
+        jlblTotalVentaE = new javax.swing.JLabel();
+        jtxtTotalPagado = new javax.swing.JTextField();
+        jlblTotalPagado = new javax.swing.JLabel();
         jpnlVentas = new javax.swing.JPanel();
         jSeparator13 = new javax.swing.JSeparator();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -311,12 +320,12 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
         jtblDetalleVenta.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtblDetalleVenta);
 
-        jpnlRealizarVenta.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 130, 440, 280));
+        jpnlRealizarVenta.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(582, 130, 440, 230));
 
-        jlblInfEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jlblInfEmpleado.setForeground(new java.awt.Color(29, 53, 87));
-        jlblInfEmpleado.setText("Total de la Venta:");
-        jpnlRealizarVenta.add(jlblInfEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 440, 210, 30));
+        jlblMetodoPago.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jlblMetodoPago.setForeground(new java.awt.Color(29, 53, 87));
+        jlblMetodoPago.setText("Metodo Pago:");
+        jpnlRealizarVenta.add(jlblMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 380, 140, 30));
 
         jlblTituloEmpleado.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jlblTituloEmpleado.setForeground(new java.awt.Color(29, 53, 87));
@@ -339,11 +348,11 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
 
         jpnlRealizarVenta.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 80, 520, 560));
 
-        jbtnRegistrarNuevoEmpleado1.setBackground(new java.awt.Color(51, 153, 255));
-        jbtnRegistrarNuevoEmpleado1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jbtnRegistrarNuevoEmpleado1.setForeground(new java.awt.Color(255, 255, 255));
-        jbtnRegistrarNuevoEmpleado1.setText("Realizar Venta");
-        jpnlRealizarVenta.add(jbtnRegistrarNuevoEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 500, 390, 50));
+        jbtnRegistrarVenta.setBackground(new java.awt.Color(51, 153, 255));
+        jbtnRegistrarVenta.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jbtnRegistrarVenta.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnRegistrarVenta.setText("Realizar Venta");
+        jpnlRealizarVenta.add(jbtnRegistrarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 500, 390, 50));
 
         jbtnEliminarTodo.setBackground(new java.awt.Color(51, 153, 255));
         jbtnEliminarTodo.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -359,7 +368,25 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
         jlblPrecioTotal.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jlblPrecioTotal.setForeground(new java.awt.Color(0, 0, 0));
         jlblPrecioTotal.setText("0.00");
-        jpnlRealizarVenta.add(jlblPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 440, -1, -1));
+        jpnlRealizarVenta.add(jlblPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 380, 70, -1));
+
+        jcbxMetodoPago.setBackground(new java.awt.Color(220, 220, 220));
+        jcbxMetodoPago.setForeground(new java.awt.Color(102, 102, 102));
+        jpnlRealizarVenta.add(jcbxMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 430, 160, 32));
+
+        jlblTotalVentaE.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jlblTotalVentaE.setForeground(new java.awt.Color(29, 53, 87));
+        jlblTotalVentaE.setText("Total Venta:");
+        jpnlRealizarVenta.add(jlblTotalVentaE, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 380, 130, 30));
+
+        jtxtTotalPagado.setBackground(new java.awt.Color(220, 220, 220));
+        jtxtTotalPagado.setForeground(new java.awt.Color(102, 102, 102));
+        jpnlRealizarVenta.add(jtxtTotalPagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 430, 70, 32));
+
+        jlblTotalPagado.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jlblTotalPagado.setForeground(new java.awt.Color(29, 53, 87));
+        jlblTotalPagado.setText("Total Pagado:");
+        jpnlRealizarVenta.add(jlblTotalPagado, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 430, 140, 30));
 
         jtpnlVentanas.addTab("Empleado", jpnlRealizarVenta);
 
@@ -439,10 +466,6 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnInicioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnInicioActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;
@@ -469,20 +492,23 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
     public javax.swing.JButton jbtnEliminarTodo;
     public javax.swing.JButton jbtnInicio;
     public javax.swing.JButton jbtnRealizarVentas;
-    public javax.swing.JButton jbtnRegistrarNuevoEmpleado1;
+    public javax.swing.JButton jbtnRegistrarVenta;
     public javax.swing.JButton jbtnVentas;
+    public javax.swing.JComboBox<String> jcbxMetodoPago;
     public javax.swing.JLabel jlblCerrar;
     public javax.swing.JLabel jlblEmpleadoNombre;
     public javax.swing.JLabel jlblEstadoI1;
-    private javax.swing.JLabel jlblInfEmpleado;
     private javax.swing.JLabel jlblInfEmpleado1;
     private javax.swing.JLabel jlblInfEmpleado2;
     public javax.swing.JLabel jlblLogoTienda;
+    private javax.swing.JLabel jlblMetodoPago;
     public javax.swing.JLabel jlblMinimizar;
     public javax.swing.JLabel jlblPrecioTotal;
     private javax.swing.JLabel jlblTitulo;
     private javax.swing.JLabel jlblTituloEmpleado;
     private javax.swing.JLabel jlblTituloEmpleado1;
+    private javax.swing.JLabel jlblTotalPagado;
+    private javax.swing.JLabel jlblTotalVentaE;
     private javax.swing.JPanel jpnlBarraOpciones;
     private javax.swing.JPanel jpnlBarraTitulo;
     private javax.swing.JPanel jpnlInicio;
@@ -493,6 +519,7 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
     public javax.swing.JTable jtblDetalleVenta;
     public javax.swing.JTable jtblVentas;
     public javax.swing.JTabbedPane jtpnlVentanas;
+    public javax.swing.JTextField jtxtTotalPagado;
     // End of variables declaration//GEN-END:variables
 
     

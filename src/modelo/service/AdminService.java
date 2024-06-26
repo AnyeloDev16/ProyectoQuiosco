@@ -30,7 +30,8 @@ public class AdminService {
         
         String sql = "{CALL usp_InsertEmployeerWithRolAndCredenciales(?,?,?,?,?,?,?,?,?,?)}";
 
-        try (Connection conn = conexion.getConnection(); CallableStatement stmt = conn.prepareCall(sql)) {
+        try (Connection conn = conexion.getConnection();
+                CallableStatement stmt = conn.prepareCall(sql)) {
 
             // Configurar parámetros de entrada
             stmt.setString(1, emp.getNombre());

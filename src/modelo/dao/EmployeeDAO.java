@@ -83,7 +83,7 @@ public class EmployeeDAO {
         String sql = "SELECT [e].empleado_id, [e].nombre, [e].apellido_paterno, [e].apellido_materno, [r].nombre_rol FROM Empleado [e]"
                 + " INNER JOIN Empleado_Rol [er] ON [e].empleado_id = [er].empleado_id"
                 + " INNER JOIN ROL [r] ON [er].rol_id = [r].rol_id"
-                + " WHERE [e].empleado_id <> 1";
+                + " WHERE [r].rol_id <> 1";
 
         try (Connection conn = conexion.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
 
