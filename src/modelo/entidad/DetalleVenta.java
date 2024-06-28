@@ -9,7 +9,7 @@ import lombok.Setter;
 @Builder
 public class DetalleVenta {
     
-    private Product producto;
+    private String nombreProducto;
     private int cantidad;
     private double precioUnitario;
     private double subTotal;   

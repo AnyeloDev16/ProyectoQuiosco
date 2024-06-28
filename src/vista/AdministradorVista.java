@@ -75,6 +75,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jbtnEliminarProducto.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
         jtblProductos.setFont(fuente.fuente(fuente.ROBOTO, 0, 16));
         jtblVentas.setFont(fuente.fuente(fuente.ROBOTO, 0, 16));
+        jtxtMostrarRecibo.setFont(fuente.fuente(fuente.ROBOTO, 0, 12));
     }
 
     private void setEstiloTabla() {
@@ -205,7 +206,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jPanel4 = new javax.swing.JPanel();
         jlblEstadoI1 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jtxtMostrarRecibo = new javax.swing.JTextArea();
         jlblTituloEmpleado1 = new javax.swing.JLabel();
         jpnlEmpleado = new javax.swing.JPanel();
         jSeparator8 = new javax.swing.JSeparator();
@@ -392,7 +393,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jpnlVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator13.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jpnlVentas.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 10, 550));
+        jpnlVentas.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 80, 10, 550));
 
         jScrollPane3.setBorder(null);
 
@@ -414,12 +415,12 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jtblVentas.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(jtblVentas);
 
-        jpnlVentas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 550, 530));
+        jpnlVentas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 550, 530));
 
         jlblInfEmpleado1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jlblInfEmpleado1.setForeground(new java.awt.Color(29, 53, 87));
         jlblInfEmpleado1.setText("Recibo de la Venta:");
-        jpnlVentas.add(jlblInfEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 380, 30));
+        jpnlVentas.add(jlblInfEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 260, 30));
 
         jPanel4.setBackground(new java.awt.Color(211, 211, 211));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -431,18 +432,21 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jlblEstadoI1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel4.add(jlblEstadoI1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 25, 140, 30));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
+        jtxtMostrarRecibo.setBackground(new java.awt.Color(255, 255, 255));
+        jtxtMostrarRecibo.setColumns(20);
+        jtxtMostrarRecibo.setForeground(new java.awt.Color(0, 0, 0));
+        jtxtMostrarRecibo.setRows(5);
+        jtxtMostrarRecibo.setPreferredSize(null);
+        jScrollPane4.setViewportView(jtxtMostrarRecibo);
 
-        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 350, 390));
+        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 320, 410));
 
-        jpnlVentas.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, 390, 430));
+        jpnlVentas.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 360, 450));
 
         jlblTituloEmpleado1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jlblTituloEmpleado1.setForeground(new java.awt.Color(29, 53, 87));
         jlblTituloEmpleado1.setText("HISTORIAL DE VENTAS:");
-        jpnlVentas.add(jlblTituloEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 430, 40));
+        jpnlVentas.add(jlblTituloEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 430, 40));
 
         jtpnlVentanas.addTab("Ventas", jpnlVentas);
 
@@ -777,7 +781,6 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTextArea jTextArea1;
     public javax.swing.JButton jbtnCambiarContrasenia;
     public javax.swing.JButton jbtnCambiarEstado;
     public javax.swing.JButton jbtnCambiarImagen;
@@ -842,6 +845,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     public javax.swing.JTable jtblProductos;
     public javax.swing.JTable jtblVentas;
     public javax.swing.JTabbedPane jtpnlVentanas;
+    public javax.swing.JTextArea jtxtMostrarRecibo;
     // End of variables declaration//GEN-END:variables
 
 }

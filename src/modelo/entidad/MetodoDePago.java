@@ -18,4 +18,8 @@ public class MetodoDePago {
         this.idMetodoPago = idMetodoPago;
     }
 
+    public MetodoDePago(String metodoPago) {
+        this.metodoPago = metodoPago;
+    }
+    
 }
