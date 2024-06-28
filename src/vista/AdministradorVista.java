@@ -5,36 +5,27 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import vista.tipografia.Tipografia;
 
-public class AdministradorVista extends javax.swing.JFrame implements MouseListener{
+public class AdministradorVista extends javax.swing.JFrame implements MouseListener {
 
     Tipografia fuente;
-    
+
     public AdministradorVista() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setShape(new RoundRectangle2D.Double(0,0,getWidth(),getHeight(),30,30));
-        this.jtblEmpleados.getColumnModel().getColumn(0).setPreferredWidth(80);
-        this.jtblEmpleados.getColumnModel().getColumn(1).setPreferredWidth(120);
-        this.jtblEmpleados.getColumnModel().getColumn(2).setPreferredWidth(250);
-        this.jtblProductos.getColumnModel().getColumn(0).setPreferredWidth(80);
-        this.jtblProductos.getColumnModel().getColumn(1).setPreferredWidth(300);
-        this.jtblProductos.getColumnModel().getColumn(2).setPreferredWidth(70);
-        this.setTipografia();
-        this.jtblEmpleados.setDefaultEditor(Object.class, null);
-        this.jtblEmpleados.setRowSelectionAllowed(true);
-        this.jtblEmpleados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        this.jtblProductos.setDefaultEditor(Object.class, null);
-        this.jtblProductos.setRowSelectionAllowed(true);
-        this.jtblProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
+        this.setEstiloTabla();
+        this.setTipografia();      
         this.jlblCerrar.addMouseListener(this);
         this.jlblMinimizar.addMouseListener(this);
     }
 
-    private void setTipografia(){
+    private void setTipografia() {
         fuente = new Tipografia();
         jlblTitulo.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
         jlblEmpleadoNombre.setFont(fuente.fuente(fuente.ROBOTO, 1, 12));
@@ -83,6 +74,35 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jbtnRegistrarNuevoProducto.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
         jbtnEliminarProducto.setFont(fuente.fuente(fuente.ROBOTO, 1, 16));
         jtblProductos.setFont(fuente.fuente(fuente.ROBOTO, 0, 16));
+        jtblVentas.setFont(fuente.fuente(fuente.ROBOTO, 0, 16));
+    }
+
+    private void setEstiloTabla() {
+        this.jtblEmpleados.getColumnModel().getColumn(0).setPreferredWidth(80);
+        this.jtblEmpleados.getColumnModel().getColumn(1).setPreferredWidth(120);
+        this.jtblEmpleados.getColumnModel().getColumn(2).setPreferredWidth(250);
+
+        this.jtblProductos.getColumnModel().getColumn(0).setPreferredWidth(80);
+        this.jtblProductos.getColumnModel().getColumn(1).setPreferredWidth(300);
+        this.jtblProductos.getColumnModel().getColumn(2).setPreferredWidth(70);
+
+        this.jtblVentas.getColumnModel().getColumn(0).setPreferredWidth(80);
+        this.jtblVentas.getColumnModel().getColumn(1).setPreferredWidth(190);
+        this.jtblVentas.getColumnModel().getColumn(2).setPreferredWidth(180);
+        this.jtblVentas.getColumnModel().getColumn(3).setPreferredWidth(100);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        this.jtblVentas.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        
+        this.jtblEmpleados.setDefaultEditor(Object.class, null);
+        this.jtblEmpleados.setRowSelectionAllowed(true);
+        this.jtblEmpleados.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.jtblProductos.setDefaultEditor(Object.class, null);
+        this.jtblProductos.setRowSelectionAllowed(true);
+        this.jtblProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.jtblVentas.setDefaultEditor(Object.class, null);
+        this.jtblVentas.setRowSelectionAllowed(true);
+        this.jtblVentas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     @Override
@@ -91,23 +111,23 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
 
     @Override
     public void mousePressed(MouseEvent e) {
-    
-        if(e.getSource() == this.jlblCerrar){
+
+        if (e.getSource() == this.jlblCerrar) {
             this.jlblCerrar.setBackground(new Color(215, 0, 0));
         }
-        if(e.getSource() == this.jlblMinimizar){
+        if (e.getSource() == this.jlblMinimizar) {
             this.jlblMinimizar.setBackground(new Color(38, 75, 130));
         }
-        
+
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-    
-        if(e.getSource() == this.jlblCerrar){
+
+        if (e.getSource() == this.jlblCerrar) {
             this.jlblCerrar.setBackground(Color.red);
         }
-        if(e.getSource() == this.jlblMinimizar){
+        if (e.getSource() == this.jlblMinimizar) {
             this.jlblMinimizar.setBackground(new Color(41, 87, 164));
         }
 
@@ -115,26 +135,26 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
 
     @Override
     public void mouseExited(MouseEvent e) {
-    
-        if(e.getSource() == this.jlblCerrar){
+
+        if (e.getSource() == this.jlblCerrar) {
             this.jlblCerrar.setBackground(new Color(45, 110, 208));
         }
-        if(e.getSource() == this.jlblMinimizar){
+        if (e.getSource() == this.jlblMinimizar) {
             this.jlblMinimizar.setBackground(new Color(45, 110, 208));
         }
-        
-    }   
-    
-    @Override
-    public void mouseReleased(MouseEvent e) {    
-        
+
     }
-    
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
     public void mostrarVentana() {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
+
     public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
     }
@@ -146,7 +166,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     public void minimizarVentana() {
         this.setState(JFrame.ICONIFIED);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -276,7 +296,6 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
 
         jlblLogoTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/LogoPerfil (1).png"))); // NOI18N
         jlblLogoTienda.setOpaque(true);
-        jlblLogoTienda.setPreferredSize(new java.awt.Dimension(108, 88));
         jpnlBarraOpciones.add(jlblLogoTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 108, 88));
 
         jlblEmpleadoNombre.setForeground(new java.awt.Color(255, 255, 255));
@@ -373,7 +392,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jpnlVentas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jSeparator13.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jpnlVentas.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 10, 550));
+        jpnlVentas.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 10, 550));
 
         jScrollPane3.setBorder(null);
 
@@ -382,12 +401,10 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jtblVentas.setForeground(new java.awt.Color(0, 0, 0));
         jtblVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Venta ID", "Fecha", "Metodo de Pago", "Total de Venta"
+                "Venta ID", "Nombre Empleado", "Fecha", "Total de Venta"
             }
         ));
         jtblVentas.setFocusable(false);
@@ -397,12 +414,12 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jtblVentas.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(jtblVentas);
 
-        jpnlVentas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 450, 530));
+        jpnlVentas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 550, 530));
 
         jlblInfEmpleado1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jlblInfEmpleado1.setForeground(new java.awt.Color(29, 53, 87));
-        jlblInfEmpleado1.setText("Información completa de la Venta:");
-        jpnlVentas.add(jlblInfEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 440, 30));
+        jlblInfEmpleado1.setText("Recibo de la Venta:");
+        jpnlVentas.add(jlblInfEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 380, 30));
 
         jPanel4.setBackground(new java.awt.Color(211, 211, 211));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -418,9 +435,9 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jTextArea1.setRows(5);
         jScrollPane4.setViewportView(jTextArea1);
 
-        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 440, 390));
+        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 350, 390));
 
-        jpnlVentas.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 480, 430));
+        jpnlVentas.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, 390, 430));
 
         jlblTituloEmpleado1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jlblTituloEmpleado1.setForeground(new java.awt.Color(29, 53, 87));
@@ -827,5 +844,4 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     public javax.swing.JTabbedPane jtpnlVentanas;
     // End of variables declaration//GEN-END:variables
 
-    
 }
