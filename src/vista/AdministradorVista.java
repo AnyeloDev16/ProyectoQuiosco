@@ -208,6 +208,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jScrollPane4 = new javax.swing.JScrollPane();
         jtxtMostrarRecibo = new javax.swing.JTextArea();
         jlblTituloEmpleado1 = new javax.swing.JLabel();
+        jbtnImprimir = new javax.swing.JButton();
         jpnlEmpleado = new javax.swing.JPanel();
         jSeparator8 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -447,6 +448,12 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jlblTituloEmpleado1.setForeground(new java.awt.Color(29, 53, 87));
         jlblTituloEmpleado1.setText("HISTORIAL DE VENTAS:");
         jpnlVentas.add(jlblTituloEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 430, 40));
+
+        jbtnImprimir.setBackground(new java.awt.Color(51, 153, 255));
+        jbtnImprimir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jbtnImprimir.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnImprimir.setText("IMPRIMIR");
+        jpnlVentas.add(jbtnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 580, 330, 40));
 
         jtpnlVentanas.addTab("Ventas", jpnlVentas);
 
@@ -790,6 +797,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
     public javax.swing.JButton jbtnCerrarSesion;
     public javax.swing.JButton jbtnEliminarProducto;
     public javax.swing.JButton jbtnEmpleados;
+    public javax.swing.JButton jbtnImprimir;
     public javax.swing.JButton jbtnInicio;
     public javax.swing.JButton jbtnProducto;
     public javax.swing.JButton jbtnRegistrarNuevoEmpleado;

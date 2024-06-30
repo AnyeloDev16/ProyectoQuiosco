@@ -67,6 +67,7 @@ public class CajeroMenuController implements MouseListener{
             
             cambiarColor(vistaCaj.jbtnVentas);
             if(!isOpenVentanaVentas){
+                CajeroVentaController cajCtrol = new CajeroVentaController(vistaCaj, modelo);
                 isOpenVentanaVentas = true;
             }      
             this.vistaCaj.jtpnlVentanas.setSelectedIndex(2);           

@@ -20,11 +20,11 @@ import modelo.entidad.DetalleVenta;
 import modelo.entidad.Employee;
 import modelo.entidad.Pago;
 import modelo.entidad.Venta;
-import vista.AdministradorVista;
+import vista.CajeroVista;
 
-public class AdmVentaController implements MouseListener, ListSelectionListener {
-
-    AdministradorVista vista;
+public class CajeroVentaController implements MouseListener, ListSelectionListener{
+ 
+    CajeroVista vista;
     Employee modelo;
 
     VentaDAO ventaDAO;
@@ -33,8 +33,8 @@ public class AdmVentaController implements MouseListener, ListSelectionListener 
 
     DefaultTableModel modeloTabla;
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm:ss");
-
-    public AdmVentaController(AdministradorVista vista, Employee modelo) {
+    
+    public CajeroVentaController(CajeroVista vista, Employee modelo) {
         this.vista = vista;
         this.modelo = modelo;
         ventaDAO = new VentaDAO();
@@ -44,11 +44,40 @@ public class AdmVentaController implements MouseListener, ListSelectionListener 
         cargarVentas();
         this.vista.jtblVentas.getSelectionModel().addListSelectionListener(this);
         this.vista.jbtnImprimir.addMouseListener(this);
+        this.vista.jbtnActualizar.addMouseListener(this);
+    }
+
+    private void cargarVentas() {
+    
+        OperationResult or = ventaDAO.obtenerListaVentasCajero();
+
+        if (or.getOperationStatus() != 1) {
+            vista.mostrarMensaje(or.getMessage());
+            return;
+        }
+
+        ArrayList<Venta> listaVenta = (ArrayList<Venta>) or.getData().get("listaVenta");
+
+        listaVenta.stream()
+                .forEach(v -> {
+
+                    Object[] row = {
+                        v.getIdVenta(),
+                        v.getNombreEmpleado(),
+                        v.getVentaFecha().format(dtf),
+                        v.getVentaTotal()
+
+                    };
+
+                    modeloTabla.addRow(row);
+
+                });
+        
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+    
         if(e.getSource() == vista.jbtnImprimir){
             
             String mensaje = vista.jtxtMostrarRecibo.getText();
@@ -81,41 +110,33 @@ public class AdmVentaController implements MouseListener, ListSelectionListener 
                 vista.mostrarMensaje("Seleccione una venta para Imprimirlo");
             }
             
+        } else if(e.getSource() == vista.jbtnActualizar){
+            
+            cargarVentas();
+            
         }
-        
+            
     }
 
-    private void cargarVentas() {
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
 
-        OperationResult or = ventaDAO.obtenerListaVentasAdmin();
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
 
-        if (or.getOperationStatus() != 1) {
-            vista.mostrarMensaje(or.getMessage());
-            return;
-        }
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
 
-        ArrayList<Venta> listaVenta = (ArrayList<Venta>) or.getData().get("listaVenta");
-
-        listaVenta.stream()
-                .forEach(v -> {
-
-                    Object[] row = {
-                        v.getIdVenta(),
-                        v.getNombreEmpleado(),
-                        v.getVentaFecha().format(dtf),
-                        v.getVentaTotal()
-
-                    };
-
-                    modeloTabla.addRow(row);
-
-                });
-
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-
+    
         if (e.getValueIsAdjusting()) {
 
             ListSelectionModel lsm = (ListSelectionModel) e.getSource();
@@ -144,25 +165,9 @@ public class AdmVentaController implements MouseListener, ListSelectionListener 
                 }
             }
         }
-
+        
     }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
-
+    
     private String formatoRecibo(ArrayList<DetalleVenta> listaDV, Pago pago) {
         StringBuilder recibo = new StringBuilder();
         int rowSelected = vista.jtblVentas.getSelectedRow();
@@ -214,5 +219,5 @@ public class AdmVentaController implements MouseListener, ListSelectionListener 
 
         return recibo.toString();
     }
-
+    
 }
