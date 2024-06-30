@@ -405,9 +405,7 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
         jtblVentas.setForeground(new java.awt.Color(0, 0, 0));
         jtblVentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Venta ID", "Fecha", "Metodo de Pago", "Total de Venta"
