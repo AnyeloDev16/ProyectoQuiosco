@@ -38,8 +38,8 @@ public class main {
 //          
 //          OperationResult or = as.agregarEmpleadoConRolYCredencias(emp, cred, 1);
 //          
-//          System.out.println(or.getMessage());;
-//        
+//          System.out.println(or.getMessage());
+        
     }
 
 }

@@ -198,6 +198,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jLabel3 = new javax.swing.JLabel();
         jtpnlVentanas = new javax.swing.JTabbedPane();
         jpnlInicio = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jpnlVentas = new javax.swing.JPanel();
         jSeparator13 = new javax.swing.JSeparator();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -376,17 +377,10 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
         jpnlPrincipal.add(jpnlBarraTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 35));
 
         jpnlInicio.setBackground(new java.awt.Color(255, 255, 255));
+        jpnlInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jpnlInicioLayout = new javax.swing.GroupLayout(jpnlInicio);
-        jpnlInicio.setLayout(jpnlInicioLayout);
-        jpnlInicioLayout.setHorizontalGroup(
-            jpnlInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
-        );
-        jpnlInicioLayout.setVerticalGroup(
-            jpnlInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 665, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/Desktop - 17 (1).png"))); // NOI18N
+        jpnlInicio.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 990, 577));
 
         jtpnlVentanas.addTab("Inicio", jpnlInicio);
 
@@ -766,6 +760,7 @@ public class AdministradorVista extends javax.swing.JFrame implements MouseListe
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -18,15 +18,20 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
         this.setLocationRelativeTo(null);
         this.setShape(new RoundRectangle2D.Double(0,0,getWidth(),getHeight(),30,30));
         this.jtblDetalleVenta.getColumnModel().getColumn(0).setPreferredWidth(80);
-        this.jtblDetalleVenta.getColumnModel().getColumn(1).setPreferredWidth(120);
-        this.jtblDetalleVenta.getColumnModel().getColumn(2).setPreferredWidth(250);
-        this.jtblDetalleVenta.getColumnModel().getColumn(0).setPreferredWidth(80);
-        this.jtblDetalleVenta.getColumnModel().getColumn(1).setPreferredWidth(300);
-        this.jtblDetalleVenta.getColumnModel().getColumn(2).setPreferredWidth(70);
+        this.jtblDetalleVenta.getColumnModel().getColumn(1).setPreferredWidth(250);
+        this.jtblDetalleVenta.getColumnModel().getColumn(2).setPreferredWidth(55);
+        this.jtblDetalleVenta.getColumnModel().getColumn(3).setPreferredWidth(55);
+        this.jtblVentas.getColumnModel().getColumn(0).setPreferredWidth(80);
+        this.jtblVentas.getColumnModel().getColumn(1).setPreferredWidth(170);
+        this.jtblVentas.getColumnModel().getColumn(2).setPreferredWidth(170);
+        this.jtblVentas.getColumnModel().getColumn(3).setPreferredWidth(100);
         this.setTipografia();
         this.jtblDetalleVenta.setDefaultEditor(Object.class, null);
         this.jtblDetalleVenta.setRowSelectionAllowed(true);
         this.jtblDetalleVenta.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.jtblVentas.setDefaultEditor(Object.class, null);
+        this.jtblVentas.setRowSelectionAllowed(true);
+        this.jtblVentas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.jlblCerrar.addMouseListener(this);
         this.jlblMinimizar.addMouseListener(this);
     }
@@ -48,6 +53,11 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
         jlblPrecioTotal.setFont(fuente.fuente(fuente.ROBOTO, 1, 20));
         jtxtTotalPagado.setFont(fuente.fuente(fuente.ROBOTO, 1, 20));
         jcbxMetodoPago.setFont(fuente.fuente(fuente.ROBOTO, 1, 14));
+        
+        jtblVentas.setFont(fuente.fuente(fuente.ROBOTO, 0, 16));
+        jtxtMostrarRecibo.setFont(fuente.fuente(fuente.ROBOTO, 0, 12));
+        jbtnImprimir.setFont(fuente.fuente(fuente.ROBOTO, 0, 12));
+        jbtnActualizar.setFont(fuente.fuente(fuente.ROBOTO, 0, 12));
 
     }
 
@@ -142,6 +152,7 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
         jLabel3 = new javax.swing.JLabel();
         jtpnlVentanas = new javax.swing.JTabbedPane();
         jpnlInicio = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jpnlRealizarVenta = new javax.swing.JPanel();
         jSeparator8 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -282,17 +293,10 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
         jpnlPrincipal.add(jpnlBarraTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 35));
 
         jpnlInicio.setBackground(new java.awt.Color(255, 255, 255));
+        jpnlInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jpnlInicioLayout = new javax.swing.GroupLayout(jpnlInicio);
-        jpnlInicio.setLayout(jpnlInicioLayout);
-        jpnlInicioLayout.setHorizontalGroup(
-            jpnlInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
-        );
-        jpnlInicioLayout.setVerticalGroup(
-            jpnlInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 665, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/Desktop - 17 (1).png"))); // NOI18N
+        jpnlInicio.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 990, 577));
 
         jtpnlVentanas.addTab("Inicio", jpnlInicio);
 
@@ -408,7 +412,7 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
 
             },
             new String [] {
-                "Venta ID", "Fecha", "Metodo de Pago", "Total de Venta"
+                "Venta ID", "Metodo de Pago", "Fecha", "Total de Venta"
             }
         ));
         jtblVentas.setFocusable(false);
@@ -428,7 +432,7 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
         jlblTituloEmpleado1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jlblTituloEmpleado1.setForeground(new java.awt.Color(29, 53, 87));
         jlblTituloEmpleado1.setText("HISTORIAL DE VENTAS:");
-        jpnlVentas.add(jlblTituloEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 430, 40));
+        jpnlVentas.add(jlblTituloEmpleado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 520, 40));
 
         jbtnImprimir.setBackground(new java.awt.Color(51, 153, 255));
         jbtnImprimir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -446,6 +450,7 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
         jlblEstadoI1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel4.add(jlblEstadoI1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 25, 140, 30));
 
+        jtxtMostrarRecibo.setEditable(false);
         jtxtMostrarRecibo.setBackground(new java.awt.Color(255, 255, 255));
         jtxtMostrarRecibo.setColumns(20);
         jtxtMostrarRecibo.setForeground(new java.awt.Color(0, 0, 0));
@@ -483,6 +488,7 @@ public class CajeroVista extends javax.swing.JFrame implements MouseListener{
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;

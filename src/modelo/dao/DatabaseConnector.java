@@ -11,7 +11,7 @@ public class DatabaseConnector {
  
     private final String URL = "jdbc:sqlserver://localhost:1433;databaseName=QuioscoDB;encrypt=true;trustServerCertificate=true";
     private final String USER = "UserQuiosco";
-    private final String PASSWORD = "quioscoUCV";
+    private final String PASSWORD = "quioscoucv";
     
     private static DatabaseConnector instance;
     

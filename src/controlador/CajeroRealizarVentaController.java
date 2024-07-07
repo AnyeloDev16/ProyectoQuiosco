@@ -9,7 +9,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import modelo.dao.MetodoDePagoDAO;
+import modelo.dao.*;
 import modelo.dao.OperationResult;
 import modelo.dao.ProductDAO;
 import modelo.entidad.Employee;
@@ -26,15 +26,21 @@ public class CajeroRealizarVentaController implements MouseListener, Redimension
 
     ProductDAO productDAO;
     MetodoDePagoDAO mdpDAO;
+    DetalleVentaDAO dtvDAO;
+    PagoDAO pagoDAO;
     TableModel modeloT;
     DefaultTableModel dtm;
     DecimalFormat df = new DecimalFormat("#.00");
+    
+    Ctrl_Boleta cb;
 
     public CajeroRealizarVentaController(CajeroVista vista, Employee modelo) {
         this.vista = vista;
         this.modelo = modelo;
         productDAO = new ProductDAO();
         mdpDAO = new MetodoDePagoDAO();
+        dtvDAO = new DetalleVentaDAO();
+        pagoDAO = new PagoDAO();
         cargarProductos();
         cargarMetodoPago();
         this.vista.jbtnEliminar.addMouseListener(this);
@@ -101,7 +107,7 @@ public class CajeroRealizarVentaController implements MouseListener, Redimension
                 return;
             }
 
-            if (!(vista.jcbxMetodoPago.getSelectedIndex() == 3 || vista.jcbxMetodoPago.getSelectedIndex() == 4)) {
+            if ((vista.jcbxMetodoPago.getSelectedIndex() == 1)) {
                 if (vista.jtxtTotalPagado.getText().equals("")) {
                     vista.mostrarMensaje("Error, Ingresar Total Pagado");
                     return;
@@ -118,14 +124,14 @@ public class CajeroRealizarVentaController implements MouseListener, Redimension
             OperationResult or1 = cs.agregarVenta(modelo.getIdEmpleado(),
                     Double.parseDouble(vista.jlblPrecioTotal.getText()),
                     vista.jcbxMetodoPago.getSelectedIndex(),
-                    (vista.jcbxMetodoPago.getSelectedIndex() == 3 || vista.jcbxMetodoPago.getSelectedIndex() == 4) ? Double.parseDouble(vista.jlblPrecioTotal.getText()) : Double.parseDouble(vista.jtxtTotalPagado.getText()));
+                    (!(vista.jcbxMetodoPago.getSelectedIndex() == 1)) ? Double.parseDouble(vista.jlblPrecioTotal.getText()) : Double.parseDouble(vista.jtxtTotalPagado.getText()));
 
             vista.mostrarMensaje(or1.getMessage());
 
             if (or1.getOperationStatus() == 1) {
 
                 int idVenta = (Integer) or1.getData().get("idVenta");
-
+      
                 for (int i = 0; i < cantRow; i++) {
 
                     int idProducto = (Integer) dtm.getValueAt(i, 0);
@@ -133,9 +139,11 @@ public class CajeroRealizarVentaController implements MouseListener, Redimension
                     double totalPrecio = Double.parseDouble(dtm.getValueAt(i, 3).toString());
                     double precioUnitario = totalPrecio / cant;
 
+                    
                     OperationResult or2 = cs.agregarDetalleVenta(idVenta, idProducto, cant, Double.parseDouble(df.format(precioUnitario)));
 
                 }
+
 
                 dtm.setRowCount(0);
                 vista.jlblPrecioTotal.setText("0.00");
@@ -276,5 +284,5 @@ public class CajeroRealizarVentaController implements MouseListener, Redimension
                 .forEach(m -> vista.jcbxMetodoPago.addItem(m.getMetodoPago()));
 
     }
-
+  
 }

@@ -63,7 +63,7 @@ public class CajeroVentaController implements MouseListener, ListSelectionListen
 
                     Object[] row = {
                         v.getIdVenta(),
-                        v.getNombreEmpleado(),
+                        v.getMetodoPago(),
                         v.getVentaFecha().format(dtf),
                         v.getVentaTotal()
 
@@ -112,6 +112,7 @@ public class CajeroVentaController implements MouseListener, ListSelectionListen
             
         } else if(e.getSource() == vista.jbtnActualizar){
             
+            modeloTabla.setRowCount(0);
             cargarVentas();
             
         }

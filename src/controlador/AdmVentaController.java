@@ -55,7 +55,7 @@ public class AdmVentaController implements MouseListener, ListSelectionListener 
             
             if(!vista.jtxtMostrarRecibo.getText().isBlank()){
                 
-                // Imprimir la boleta
+            // Imprimir la boleta
             PrinterJob printerJob = PrinterJob.getPrinterJob();
             printerJob.setJobName("Boleta de Compra");
 

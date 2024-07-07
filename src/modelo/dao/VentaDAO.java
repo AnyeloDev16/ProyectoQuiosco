@@ -58,8 +58,9 @@ public class VentaDAO {
     
     public OperationResult obtenerListaVentasCajero(){
         
-        String sql = "SELECT [v].venta_id, [e].nombre + \' \' + [e].apellido_paterno + \' \' + [e].apellido_materno, [v].total_venta, [v].fecha_venta FROM Venta [v]"
-                + " INNER JOIN Empleado [e] ON [v].empleado_id = [e].empleado_id "
+        String sql = "SELECT [v].venta_id, [mp].metodo_pago, [v].fecha_venta, [v].total_venta FROM Venta [v]"
+                + " INNER JOIN Pago [p] ON [v].venta_id = [p].venta_id "
+                + " INNER JOIN MetodoPago [mp] ON [p].metodo_pago_id = [mp].metodo_pago_id"
                 + " WHERE CONVERT(DATE, [v].fecha_venta) = CONVERT(DATE, GETDATE())"
                 + " ORDER BY [v].venta_id DESC";
         
@@ -72,15 +73,15 @@ public class VentaDAO {
             while(rs.next()){
                 
                 int idVenta = rs.getInt(1);
-                String nombreEmpleado = rs.getString(2);
-                double totalVenta = rs.getDouble(3);
-                LocalDateTime fechaVenta = rs.getTimestamp(4).toLocalDateTime();
+                String metodoPago = rs.getString(2);
+                LocalDateTime fechaVenta = rs.getTimestamp(3).toLocalDateTime();
+                double totalVenta = rs.getDouble(4);
                 
                 Venta v = Venta.builder()
                         .idVenta(idVenta)
-                        .nombreEmpleado(nombreEmpleado)
-                        .ventaTotal(totalVenta)
+                        .metodoPago(metodoPago)
                         .ventaFecha(fechaVenta)
+                        .ventaTotal(totalVenta)
                         .build();
                 
                 listaVenta.add(v);
